@@ -1,209 +1,1317 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxe & Cut | Barbería & Peluquería Premium</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .gradient-text { background: linear-gradient(90deg, #fff, #d4af37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hidden-view { display: none; }
-        .service-card:hover { border-color: #d4af37; transform: translateY(-5px); }
-        transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BarberStudio | Peluquería & Barbería Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dark: #9A7A2E;
+  --dark: #0D0D0D;
+  --dark2: #141414;
+  --dark3: #1C1C1C;
+  --dark4: #242424;
+  --mid: #333;
+  --light: #F5F0E8;
+  --light2: #EDE5D5;
+  --white: #FFFFFF;
+  --text-muted: #888;
+  --text-mid: #BBB;
+  --green: #2ECC71;
+  --red: #E74C3C;
+  --blue: #3498DB;
+  --orange: #E67E22;
+  --radius: 14px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-gold: 0 4px 24px rgba(201,168,76,0.25);
+  --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--dark2);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;transition:var(--transition);}
+nav.scrolled{background:rgba(13,13,13,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,0.15);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);letter-spacing:1px;text-decoration:none;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{color:var(--text-mid);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.5px;transition:var(--transition);}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{display:flex;gap:12px;align-items:center;}
+.btn-nav{padding:10px 24px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);text-decoration:none;border:none;}
+.btn-nav-outline{background:transparent;border:1px solid rgba(201,168,76,0.4);color:var(--gold);}
+.btn-nav-outline:hover{border-color:var(--gold);background:rgba(201,168,76,0.1);}
+.btn-nav-fill{background:var(--gold);color:var(--dark);}
+.btn-nav-fill:hover{background:var(--gold-light);transform:translateY(-1px);}
+
+/* ===== HERO ===== */
+#hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80');background-size:cover;background-position:center;filter:brightness(0.35);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,13,13,0.85) 0%,rgba(13,13,13,0.3) 100%);}
+.hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 40px;padding-top:100px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);border-radius:50px;padding:8px 20px;font-size:12px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;animation:fadeInUp 0.8s ease both;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,88px);font-weight:900;line-height:1.05;margin-bottom:24px;animation:fadeInUp 0.8s 0.1s ease both;}
+.hero-title span{color:var(--gold);}
+.hero-sub{font-size:18px;color:var(--text-mid);max-width:540px;line-height:1.7;margin-bottom:40px;animation:fadeInUp 0.8s 0.2s ease both;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeInUp 0.8s 0.3s ease both;}
+.btn-primary{padding:16px 36px;background:var(--gold);color:var(--dark);border-radius:50px;font-weight:700;font-size:15px;cursor:pointer;border:none;transition:var(--transition);text-decoration:none;}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:var(--shadow-gold);}
+.btn-wa{padding:16px 36px;background:rgba(37,211,102,0.15);border:1px solid rgba(37,211,102,0.4);color:#25D366;border-radius:50px;font-weight:700;font-size:15px;cursor:pointer;transition:var(--transition);text-decoration:none;display:flex;align-items:center;gap:10px;}
+.btn-wa:hover{background:rgba(37,211,102,0.25);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:48px;margin-top:64px;animation:fadeInUp 0.8s 0.4s ease both;flex-wrap:wrap;}
+.stat{border-left:2px solid var(--gold);padding-left:20px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold);}
+.stat-label{font-size:13px;color:var(--text-muted);margin-top:2px;}
+
+/* ===== BADGES HERO ===== */
+.hero-trust{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;animation:fadeInUp 0.8s 0.5s ease both;}
+.trust-badge{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-mid);}
+.trust-badge::before{content:'✓';color:var(--gold);font-weight:700;}
+
+/* ===== SECTIONS ===== */
+.section{padding:100px 40px;max-width:1200px;margin:0 auto;}
+.section-label{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.15;margin-bottom:16px;}
+.section-sub{color:var(--text-muted);font-size:16px;line-height:1.7;max-width:520px;}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;flex-wrap:wrap;gap:24px;}
+.divider{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:16px 0;}
+
+/* ===== SERVICIOS ===== */
+#servicios{background:var(--dark2);}
+#servicios .section-inner{padding:100px 40px;max-width:1200px;margin:0 auto;}
+.servicios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+.servicio-card{background:var(--dark3);border:1px solid rgba(201,168,76,0.1);border-radius:var(--radius);overflow:hidden;transition:var(--transition);cursor:pointer;}
+.servicio-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,0.35);box-shadow:var(--shadow-gold);}
+.servicio-img{height:200px;overflow:hidden;}
+.servicio-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+.servicio-card:hover .servicio-img img{transform:scale(1.06);}
+.servicio-body{padding:24px;}
+.servicio-icon{font-size:28px;margin-bottom:12px;}
+.servicio-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;}
+.servicio-desc{color:var(--text-muted);font-size:14px;line-height:1.6;margin-bottom:16px;}
+.servicio-price{font-size:14px;color:var(--gold);font-weight:600;}
+
+/* ===== GALERÍA ===== */
+.galeria-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:12px;}
+.galeria-grid .g1{grid-column:1/2;grid-row:1/3;}
+.galeria-grid .g2{grid-column:2/3;grid-row:1/2;}
+.galeria-grid .g3{grid-column:3/4;grid-row:1/2;}
+.galeria-grid .g4{grid-column:2/4;grid-row:2/3;}
+.galeria-item{border-radius:var(--radius);overflow:hidden;position:relative;}
+.galeria-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block;}
+.galeria-item:hover img{transform:scale(1.05);}
+.galeria-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,13,0.7),transparent);opacity:0;transition:var(--transition);}
+.galeria-item:hover .overlay{opacity:1;}
+.g1{height:460px;}
+.g2,.g3{height:220px;}
+.g4{height:220px;}
+
+/* ===== OFERTA ESPECIAL ===== */
+#oferta{background:linear-gradient(135deg,var(--dark2),var(--dark3));}
+#oferta .section-inner{padding:80px 40px;max-width:1200px;margin:0 auto;}
+.oferta-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.oferta-badge{display:inline-block;background:var(--gold);color:var(--dark);font-family:'Playfair Display',serif;font-size:64px;font-weight:900;padding:20px 40px;border-radius:var(--radius);margin-bottom:24px;}
+.oferta-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:16px;line-height:1.2;}
+.oferta-sub{color:var(--text-muted);font-size:16px;line-height:1.7;margin-bottom:32px;}
+.oferta-list{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.oferta-item{display:flex;align-items:center;gap:12px;font-size:14px;}
+.oferta-item::before{content:'✓';color:var(--gold);font-weight:700;font-size:16px;}
+.oferta-img{border-radius:20px;overflow:hidden;position:relative;}
+.oferta-img img{width:100%;height:400px;object-fit:cover;}
+.oferta-rating{position:absolute;bottom:20px;right:20px;background:rgba(13,13,13,0.9);backdrop-filter:blur(10px);border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 20px;text-align:center;}
+.rating-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);}
+.rating-stars{font-size:14px;letter-spacing:2px;}
+.rating-label{font-size:11px;color:var(--text-muted);margin-top:2px;}
+
+/* ===== NOSOTROS ===== */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.feature-card{background:var(--dark3);border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius);padding:32px;transition:var(--transition);}
+.feature-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-4px);}
+.feature-icon{font-size:32px;margin-bottom:16px;}
+.feature-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:10px;}
+.feature-desc{color:var(--text-muted);font-size:14px;line-height:1.6;}
+
+/* ===== TESTIMONIOS ===== */
+#testimonios{background:var(--dark2);}
+#testimonios .section-inner{padding:100px 40px;max-width:1200px;margin:0 auto;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testi-card{background:var(--dark3);border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius);padding:28px;transition:var(--transition);}
+.testi-card:hover{border-color:rgba(201,168,76,0.2);transform:translateY(-4px);}
+.testi-stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:16px;}
+.testi-text{color:var(--text-mid);font-size:14px;line-height:1.7;font-style:italic;margin-bottom:24px;}
+.testi-author{display:flex;align-items:center;gap:14px;}
+.testi-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.3);}
+.testi-name{font-weight:600;font-size:14px;}
+.testi-service{font-size:12px;color:var(--gold);}
+
+/* ===== CONTACTO ===== */
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+.contacto-info{display:flex;flex-direction:column;gap:28px;}
+.info-item{display:flex;gap:18px;align-items:flex-start;}
+.info-icon{width:48px;height:48px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.info-label{font-size:12px;color:var(--text-muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.info-value{font-size:15px;color:var(--white);}
+.info-value a{color:var(--white);text-decoration:none;}
+.info-value a:hover{color:var(--gold);}
+.contacto-form{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:36px;}
+.form-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:24px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;text-transform:uppercase;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--dark4);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;color:var(--white);font-size:14px;font-family:'DM Sans',sans-serif;transition:var(--transition);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:rgba(201,168,76,0.4);}
+.form-group select option{background:var(--dark4);}
+.form-group textarea{resize:vertical;min-height:100px;}
+.form-success{display:none;background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.3);color:#2ECC71;padding:16px;border-radius:10px;font-size:14px;margin-bottom:16px;}
+.map-wrap{border-radius:var(--radius);overflow:hidden;height:250px;margin-top:28px;}
+.map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(1);}
+
+/* ===== FOOTER ===== */
+footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,0.05);padding:60px 40px 30px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:48px;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold);margin-bottom:16px;}
+.footer-desc{color:var(--text-muted);font-size:14px;line-height:1.7;margin-bottom:24px;}
+.footer-social{display:flex;gap:12px;}
+.social-btn{width:40px;height:40px;background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);font-size:16px;}
+.social-btn:hover{border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.1);}
+.footer-col-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:20px;letter-spacing:0.5px;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{color:var(--text-muted);text-decoration:none;font-size:14px;transition:var(--transition);}
+.footer-links a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:var(--text-muted);}
+.footer-panel-link{font-size:13px;color:var(--text-muted);cursor:pointer;text-decoration:none;transition:var(--transition);}
+.footer-panel-link:hover{color:var(--gold);}
+
+/* ===== FLOAT BUTTONS ===== */
+.float-wa{position:fixed;bottom:90px;right:24px;z-index:900;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.4);cursor:pointer;transition:var(--transition);}
+.float-wa:hover{transform:scale(1.1);}
+.float-chat{position:fixed;bottom:24px;right:24px;z-index:900;width:56px;height:56px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:var(--shadow-gold);cursor:pointer;transition:var(--transition);}
+.float-chat:hover{transform:scale(1.1);}
+
+/* ===== CHATBOT ===== */
+.chatbot-window{position:fixed;bottom:96px;right:24px;z-index:1100;width:360px;background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:20px;box-shadow:var(--shadow);display:none;flex-direction:column;overflow:hidden;animation:slideUp 0.3s ease;}
+.chatbot-window.open{display:flex;}
+.chat-header{background:linear-gradient(135deg,var(--dark3),var(--dark4));padding:18px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.chat-avatar{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.chat-name{font-weight:700;font-size:15px;}
+.chat-status{font-size:11px;color:var(--green);}
+.chat-close{margin-left:auto;cursor:pointer;opacity:0.5;font-size:20px;}
+.chat-close:hover{opacity:1;}
+.chat-messages{flex:1;padding:20px;display:flex;flex-direction:column;gap:12px;max-height:320px;overflow-y:auto;}
+.msg{max-width:85%;padding:12px 16px;border-radius:14px;font-size:14px;line-height:1.5;}
+.msg-bot{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);align-self:flex-start;border-bottom-left-radius:4px;}
+.msg-user{background:var(--gold);color:var(--dark);align-self:flex-end;border-bottom-right-radius:4px;font-weight:500;}
+.chat-options{padding:12px 20px;display:flex;flex-wrap:wrap;gap:8px;}
+.chat-opt{padding:8px 14px;background:transparent;border:1px solid rgba(201,168,76,0.3);border-radius:50px;font-size:12px;color:var(--gold);cursor:pointer;transition:var(--transition);}
+.chat-opt:hover{background:rgba(201,168,76,0.1);}
+.chat-input-row{padding:12px 20px 16px;display:flex;gap:8px;border-top:1px solid rgba(255,255,255,0.05);}
+.chat-input-row input{flex:1;background:var(--dark4);border:1px solid rgba(255,255,255,0.08);border-radius:50px;padding:10px 16px;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;}
+.chat-input-row input:focus{outline:none;border-color:rgba(201,168,76,0.4);}
+.chat-send{width:36px;height:36px;background:var(--gold);border:none;border-radius:50%;cursor:pointer;font-size:16px;transition:var(--transition);}
+.chat-send:hover{background:var(--gold-light);}
+
+/* ===== LOGIN ===== */
+#login-overlay{display:none;position:fixed;inset:0;z-index:2000;background:var(--dark);align-items:center;justify-content:center;}
+#login-overlay.active{display:flex;}
+.login-box{width:420px;background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:24px;padding:48px;text-align:center;box-shadow:var(--shadow);}
+.login-logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);margin-bottom:8px;}
+.login-sub{color:var(--text-muted);font-size:14px;margin-bottom:36px;}
+.login-group{text-align:left;margin-bottom:16px;}
+.login-group label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;}
+.login-group input{width:100%;background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;color:var(--white);font-size:15px;font-family:'DM Sans',sans-serif;transition:var(--transition);}
+.login-group input:focus{outline:none;border-color:rgba(201,168,76,0.4);}
+.login-error{display:none;color:var(--red);font-size:13px;margin-bottom:12px;}
+.login-btn{width:100%;padding:16px;background:var(--gold);color:var(--dark);border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px;transition:var(--transition);}
+.login-btn:hover{background:var(--gold-light);}
+.login-back{display:block;margin-top:20px;color:var(--text-muted);font-size:13px;cursor:pointer;text-decoration:none;}
+.login-back:hover{color:var(--gold);}
+
+/* ===== PANEL ===== */
+#panel-overlay{display:none;position:fixed;inset:0;z-index:1500;background:var(--dark);}
+#panel-overlay.active{display:flex;}
+.panel-sidebar{width:240px;background:var(--dark2);border-right:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;flex-shrink:0;}
+.panel-logo{padding:28px 24px;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);border-bottom:1px solid rgba(255,255,255,0.05);}
+.panel-logo small{display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text-muted);font-weight:400;margin-top:4px;letter-spacing:0.5px;text-transform:uppercase;}
+.panel-nav{flex:1;padding:16px 0;}
+.panel-section-label{font-size:10px;font-weight:700;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;padding:16px 24px 8px;}
+.nav-item{display:flex;align-items:center;gap:12px;padding:12px 24px;cursor:pointer;transition:var(--transition);color:var(--text-muted);font-size:14px;font-weight:500;border-left:3px solid transparent;}
+.nav-item:hover{color:var(--white);background:rgba(255,255,255,0.03);}
+.nav-item.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,0.05);}
+.nav-item span{font-size:18px;}
+.panel-footer{padding:20px 24px;border-top:1px solid rgba(255,255,255,0.05);}
+.logout-btn{display:flex;align-items:center;gap:10px;color:var(--text-muted);cursor:pointer;font-size:13px;transition:var(--transition);}
+.logout-btn:hover{color:var(--red);}
+.panel-main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.panel-topbar{padding:20px 32px;background:var(--dark2);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;}
+.panel-topbar-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;}
+.panel-content{flex:1;overflow-y:auto;padding:32px;}
+
+/* ===== PANEL VIEWS ===== */
+.panel-view{display:none;}
+.panel-view.active{display:block;}
+
+/* Dashboard */
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:32px;}
+.dash-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:24px;}
+.dash-card-label{font-size:12px;color:var(--text-muted);font-weight:600;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px;}
+.dash-card-value{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--white);}
+.dash-card-sub{font-size:12px;color:var(--text-muted);margin-top:4px;}
+.dash-card.gold{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.05);}
+.dash-card.gold .dash-card-value{color:var(--gold);}
+.dash-card-icon{font-size:24px;margin-bottom:8px;}
+
+/* Tabla */
+.panel-table-wrap{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);overflow:hidden;}
+.panel-table-header{padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;}
+.panel-table-title{font-weight:700;font-size:15px;}
+.btn-small{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);border:none;}
+.btn-small-gold{background:var(--gold);color:var(--dark);}
+.btn-small-gold:hover{background:var(--gold-light);}
+.btn-small-outline{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--text-mid);}
+.btn-small-outline:hover{border-color:rgba(201,168,76,0.4);color:var(--gold);}
+table{width:100%;border-collapse:collapse;}
+th{padding:12px 20px;text-align:left;font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.05);}
+td{padding:14px 20px;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.03);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+
+/* Estado badges */
+.badge{padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;display:inline-block;}
+.badge-pending{background:rgba(230,126,34,0.15);color:var(--orange);border:1px solid rgba(230,126,34,0.3);}
+.badge-confirmed{background:rgba(52,152,219,0.15);color:var(--blue);border:1px solid rgba(52,152,219,0.3);}
+.badge-arrived{background:rgba(46,204,113,0.15);color:var(--green);border:1px solid rgba(46,204,113,0.3);}
+.badge-no-show{background:rgba(231,76,60,0.15);color:var(--red);border:1px solid rgba(231,76,60,0.3);}
+.badge-cancelled{background:rgba(100,100,100,0.15);color:#999;border:1px solid rgba(100,100,100,0.3);}
+
+/* Agenda visual */
+.agenda-wrap{display:grid;grid-template-columns:200px 1fr;gap:24px;}
+.agenda-days{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);overflow:hidden;}
+.agenda-day-item{padding:14px 20px;cursor:pointer;font-size:14px;transition:var(--transition);border-left:3px solid transparent;}
+.agenda-day-item:hover{background:rgba(255,255,255,0.03);}
+.agenda-day-item.active{border-left-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.05);}
+.agenda-day-name{font-weight:600;}
+.agenda-day-count{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.agenda-timeline{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);overflow:hidden;}
+.agenda-timeline-header{padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;}
+.agenda-slots{padding:8px 0;}
+.agenda-slot{display:flex;align-items:center;gap:0;border-bottom:1px solid rgba(255,255,255,0.03);transition:var(--transition);}
+.agenda-slot:last-child{border-bottom:none;}
+.slot-time{width:80px;padding:16px 20px;font-size:13px;font-weight:700;color:var(--text-muted);}
+.slot-content{flex:1;padding:10px 16px;margin:6px 16px 6px 0;border-radius:10px;cursor:pointer;transition:var(--transition);}
+.slot-content.occupied{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);}
+.slot-content.occupied:hover{background:rgba(201,168,76,0.18);}
+.slot-content.empty{border:1px dashed rgba(255,255,255,0.08);}
+.slot-content.empty:hover{background:rgba(255,255,255,0.03);border-color:rgba(201,168,76,0.2);}
+.slot-client{font-size:14px;font-weight:600;}
+.slot-service{font-size:12px;color:var(--gold);}
+.slot-empty-text{font-size:13px;color:var(--text-muted);padding:12px;}
+
+/* Clientes */
+.clientes-search{display:flex;gap:12px;margin-bottom:24px;}
+.search-input{flex:1;background:var(--dark2);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;color:var(--white);font-size:14px;font-family:'DM Sans',sans-serif;}
+.search-input:focus{outline:none;border-color:rgba(201,168,76,0.4);}
+.cliente-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:24px;margin-bottom:16px;display:flex;align-items:center;gap:24px;transition:var(--transition);}
+.cliente-card:hover{border-color:rgba(201,168,76,0.2);transform:translateX(4px);}
+.cliente-avatar{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;flex-shrink:0;}
+.cliente-info{flex:1;}
+.cliente-name{font-weight:700;font-size:16px;margin-bottom:4px;}
+.cliente-meta{font-size:13px;color:var(--text-muted);}
+.cliente-services{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.service-tag{padding:3px 10px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:50px;font-size:11px;color:var(--gold);}
+.wa-btns{display:flex;gap:8px;margin-left:auto;}
+.wa-btn{padding:8px 14px;border:1px solid rgba(37,211,102,0.3);background:rgba(37,211,102,0.08);color:#25D366;border-radius:8px;font-size:12px;cursor:pointer;transition:var(--transition);text-decoration:none;}
+.wa-btn:hover{background:rgba(37,211,102,0.18);}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;}
+.modal-overlay.active{display:flex;}
+.modal{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:36px;width:500px;max-width:95vw;max-height:90vh;overflow-y:auto;}
+.modal-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;}
+.modal-close{cursor:pointer;opacity:0.5;font-size:22px;}
+.modal-close:hover{opacity:1;}
+.modal-group{margin-bottom:16px;}
+.modal-group label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;text-transform:uppercase;}
+.modal-group input,.modal-group select,.modal-group textarea{width:100%;background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;color:var(--white);font-size:14px;font-family:'DM Sans',sans-serif;transition:var(--transition);}
+.modal-group input:focus,.modal-group select:focus,.modal-group textarea:focus{outline:none;border-color:rgba(201,168,76,0.4);}
+.modal-group select option{background:var(--dark3);}
+.modal-group textarea{resize:vertical;min-height:80px;}
+.modal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.modal-btns{display:flex;gap:12px;margin-top:8px;}
+
+/* Estado rápido */
+.estado-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.estado-btn{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid;transition:var(--transition);}
+.estado-btn:hover{opacity:0.8;}
+.e-pending{background:rgba(230,126,34,0.1);color:var(--orange);border-color:rgba(230,126,34,0.3);}
+.e-confirmed{background:rgba(52,152,219,0.1);color:var(--blue);border-color:rgba(52,152,219,0.3);}
+.e-arrived{background:rgba(46,204,113,0.1);color:var(--green);border-color:rgba(46,204,113,0.3);}
+.e-noshow{background:rgba(231,76,60,0.1);color:var(--red);border-color:rgba(231,76,60,0.3);}
+.e-cancelled{background:rgba(100,100,100,0.1);color:#999;border-color:rgba(100,100,100,0.3);}
+
+/* WhatsApp panel */
+.wa-templates{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.wa-template{background:var(--dark2);border:1px solid rgba(37,211,102,0.15);border-radius:var(--radius);padding:20px;}
+.wa-template-title{font-weight:700;font-size:14px;margin-bottom:8px;color:#25D366;}
+.wa-template-text{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:16px;}
+.wa-send-btn{width:100%;padding:10px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);color:#25D366;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);}
+.wa-send-btn:hover{background:rgba(37,211,102,0.2);}
+
+/* Animations */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
+/* Responsive */
+@media(max-width:900px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  .hero-content{padding:0 20px;padding-top:100px;}
+  .section{padding:60px 20px;}
+  #servicios .section-inner,#oferta .section-inner,#testimonios .section-inner{padding:60px 20px;}
+  .servicios-grid{grid-template-columns:1fr;}
+  .galeria-grid{grid-template-columns:1fr 1fr;}
+  .galeria-grid .g1{grid-column:1/3;grid-row:1/2;height:240px;}
+  .galeria-grid .g2,.galeria-grid .g3{grid-column:unset;grid-row:unset;height:180px;}
+  .galeria-grid .g4{grid-column:1/3;grid-row:unset;height:180px;}
+  .oferta-wrap{grid-template-columns:1fr;}
+  .features-grid{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .contacto-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .dash-grid{grid-template-columns:1fr 1fr;}
+  .agenda-wrap{grid-template-columns:1fr;}
+  .wa-templates{grid-template-columns:1fr;}
+  footer{padding:40px 20px 20px;}
+  .panel-sidebar{width:60px;}
+  .panel-logo{padding:20px 0;text-align:center;font-size:14px;}
+  .panel-logo small{display:none;}
+  .nav-item span:last-child{display:none;}
+  .panel-section-label{display:none;}
+  .panel-sidebar .nav-item{padding:14px;justify-content:center;}
+  .logout-btn span:last-child{display:none;}
+}
+</style>
 </head>
 <body>
 
-    <!-- ============================================
-         SECCIÓN 1: WEB PÚBLICA (Landing Page)
-         ============================================ -->
-    <div id="web-publica">
-        <!-- Navegación -->
-        <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center glass">
-            <div class="text-xl font-black tracking-tighter">LUXE<span class="text-[#d4af37]">&</span>CUT</div>
-            <div class="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-widest">
-                <a href="#inicio" class="hover:text-[#d4af37] transition">Inicio</a>
-                <a href="#servicios" class="hover:text-[#d4af37] transition">Servicios</a>
-                <a href="#contacto" class="hover:text-[#d4af37] transition">Contacto</a>
-            </div>
-            <button onclick="document.getElementById('contacto').scrollIntoView()" class="bg-[#d4af37] text-black px-6 py-2 rounded-full font-bold text-xs">RESERVAR</button>
-        </nav>
+<!-- ===== NAV ===== -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">✦ BarberStudio</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#testimonios">Reseñas</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a class="btn-nav btn-nav-outline" href="https://wa.me/34600000000" target="_blank">WhatsApp</a>
+    <button class="btn-nav btn-nav-fill" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Reservar Cita</button>
+  </div>
+</nav>
 
-        <!-- Hero -->
-        <section id="inicio" class="h-screen flex items-center justify-center relative overflow-hidden text-center px-4">
-            <img src="https://images.unsplash.com/photo-1512690199101-837bc19b4519?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover opacity-30">
-            <div class="relative z-10">
-                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 gradient-text uppercase">The Master Cut</h1>
-                <p class="text-gray-400 max-w-xl mx-auto mb-8 text-lg">Experiencia premium de barbería en el corazón de Murcia. Donde la tradición se encuentra con la vanguardia.</p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <button class="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-[#d4af37] transition">NUESTROS SERVICIOS</button>
-                    <button class="glass px-8 py-4 rounded-2xl font-bold flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> WHATSAPP</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Servicios -->
-        <section id="servicios" class="py-24 px-6 max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold mb-16 text-center italic text-[#d4af37]">Servicios de Autor</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-[40px] service-card transition border-white/5">
-                    <i class="fa-solid fa-scissors text-3xl text-[#d4af37] mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-2">Corte Signature</h3>
-                    <p class="text-gray-500 mb-4">Incluye asesoramiento, lavado y styling final.</p>
-                    <span class="text-xl font-bold">25€</span>
-                </div>
-                <div class="glass p-8 rounded-[40px] service-card transition border-white/5">
-                    <i class="fa-solid fa-razor text-3xl text-[#d4af37] mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-2">Afeitado Clásico</h3>
-                    <p class="text-gray-500 mb-4">Ritual con toallas calientes y navaja artesanal.</p>
-                    <span class="text-xl font-bold">20€</span>
-                </div>
-                <div class="glass p-8 rounded-[40px] service-card transition border-white/5">
-                    <i class="fa-solid fa-crown text-3xl text-[#d4af37] mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-2">Pack Premium</h3>
-                    <p class="text-gray-500 mb-4">Experiencia completa: Corte + Barba + Hidratación.</p>
-                    <span class="text-xl font-bold">40€</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer discreto con acceso a Login -->
-        <footer id="contacto" class="py-12 border-t border-white/5 text-center px-6">
-            <p class="text-gray-600 text-sm mb-4">© 2024 Luxe & Cut Murcia. Todos los derechos reservados.</p>
-            <button onclick="abrirLogin()" class="opacity-10 hover:opacity-100 transition text-[10px] uppercase tracking-widest">Acceso Staff</button>
-        </footer>
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Peluquería & Barbería Premium</div>
+    <h1 class="hero-title">Tu mejor versión<br>empieza <span>aquí</span></h1>
+    <p class="hero-sub">Cortes de autor, barbería clásica y tratamientos exclusivos. El espacio donde el estilo se convierte en experiencia.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">📅 Reservar Cita</button>
+      <a class="btn-wa" href="https://wa.me/34600000000?text=Hola,%20quiero%20pedir%20una%20cita" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
     </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">+1.200</div><div class="stat-label">Clientes satisfechos</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Años de experiencia</div></div>
+      <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Valoración media</div></div>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-badge">Profesionales certificados</span>
+      <span class="trust-badge">Productos premium</span>
+      <span class="trust-badge">Cita el mismo día</span>
+      <span class="trust-badge">Parking gratuito</span>
+    </div>
+  </div>
+</section>
 
-    <!-- ============================================
-         SECCIÓN 2: LOGIN (Oculto)
-         ============================================ -->
-    <div id="seccion-login" class="hidden-view fixed inset-0 z-[100] bg-black flex items-center justify-center p-6">
-        <div class="glass p-10 rounded-[40px] w-full max-w-md text-center border-white/10">
-            <h2 class="text-2xl font-bold mb-8">Acceso Administración</h2>
-            <div class="space-y-4">
-                <input type="text" id="user" placeholder="Usuario" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-[#d4af37] outline-none">
-                <input type="password" id="pass" placeholder="Contraseña" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-[#d4af37] outline-none">
-                <button onclick="validarLogin()" class="w-full bg-[#d4af37] text-black font-bold py-4 rounded-2xl hover:scale-95 transition">ENTRAR</button>
-                <button onclick="cerrarTodo()" class="text-gray-500 text-sm">Volver a la web</button>
-            </div>
+<!-- ===== SERVICIOS ===== -->
+<div id="servicios">
+  <div class="section-inner">
+    <div class="section" style="padding-top:100px;padding-bottom:100px;">
+      <div class="section-header fade-in">
+        <div>
+          <p class="section-label">Lo que hacemos</p>
+          <h2 class="section-title">Nuestros servicios</h2>
+          <div class="divider"></div>
+          <p class="section-sub">Desde cortes clásicos hasta transformaciones completas. Calidad y detalle en cada servicio.</p>
         </div>
-    </div>
-
-    <!-- ============================================
-         SECCIÓN 3: PANEL DE GESTIÓN (Oculto)
-         ============================================ -->
-    <div id="panel-admin" class="hidden-view min-h-screen flex bg-[#020202]">
-        <!-- Sidebar -->
-        <aside class="w-64 border-r border-white/5 p-6 hidden md:flex flex-col">
-            <div class="text-xl font-black mb-12">HAIR<span class="text-[#d4af37]">OS</span></div>
-            <nav class="space-y-4 flex-1">
-                <div class="text-[#d4af37] bg-[#d4af37]/10 p-4 rounded-2xl flex items-center gap-3"><i class="fa-solid fa-calendar"></i> Agenda</div>
-                <div class="p-4 text-gray-500 hover:text-white transition cursor-pointer flex items-center gap-3"><i class="fa-solid fa-users"></i> Clientes</div>
-            </nav>
-            <button onclick="cerrarTodo()" class="text-red-500 text-left p-4 hover:bg-red-500/10 rounded-2xl transition"><i class="fa-solid fa-power-off mr-2"></i> Salir</button>
-        </aside>
-
-        <!-- Contenido -->
-        <main class="flex-1 p-8">
-            <div class="flex justify-between items-center mb-10">
-                <h2 class="text-3xl font-bold">Agenda de Hoy</h2>
-                <div class="text-right">
-                    <p id="fecha-actual" class="text-gray-500 text-sm"></p>
-                </div>
-            </div>
-
-            <div id="lista-citas" class="space-y-4">
-                <!-- Se llena con JS -->
-            </div>
-        </main>
-    </div>
-
-    <!-- CHATBOT -->
-    <div class="fixed bottom-6 right-6 z-[200]">
-        <div id="chat-ui" class="hidden w-72 glass rounded-3xl mb-4 overflow-hidden border-white/10 flex flex-col h-80">
-            <div class="bg-[#d4af37] p-4 text-black font-bold text-sm">Asistente Luxe & Cut</div>
-            <div id="chat-msgs" class="flex-1 p-4 overflow-y-auto text-xs space-y-2">
-                <p class="bg-white/5 p-2 rounded-lg">¿Cómo podemos ayudarte hoy?</p>
-            </div>
-            <div class="p-2 border-t border-white/5 flex gap-1">
-                <button onclick="bot('P')" class="text-[9px] bg-white/5 p-2 rounded-lg flex-1">PRECIOS</button>
-                <button onclick="bot('U')" class="text-[9px] bg-white/5 p-2 rounded-lg flex-1">UBICACIÓN</button>
-            </div>
+      </div>
+      <div class="servicios-grid">
+        <div class="servicio-card fade-in">
+          <div class="servicio-img"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Corte hombre"></div>
+          <div class="servicio-body">
+            <div class="servicio-icon">✂️</div>
+            <div class="servicio-title">Corte de Cabello Hombre</div>
+            <div class="servicio-desc">Cortes modernos y clásicos adaptados a tu estilo personal. Fade, texturizado, degradado y mucho más.</div>
+            <div class="servicio-price">Desde 18€ · 30-45 min</div>
+          </div>
         </div>
-        <button onclick="document.getElementById('chat-ui').classList.toggle('hidden')" class="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center text-black shadow-2xl hover:scale-110 transition">
-            <i class="fa-solid fa-comment"></i>
-        </button>
+        <div class="servicio-card fade-in">
+          <div class="servicio-img"><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=600&q=80" alt="Corte mujer"></div>
+          <div class="servicio-body">
+            <div class="servicio-icon">💇‍♀️</div>
+            <div class="servicio-title">Corte de Cabello Mujer</div>
+            <div class="servicio-desc">Cortes personalizados que realzan tu belleza natural. Incluye lavado, corte y secado con estilo.</div>
+            <div class="servicio-price">Desde 28€ · 45-60 min</div>
+          </div>
+        </div>
+        <div class="servicio-card fade-in">
+          <div class="servicio-img"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Barba"></div>
+          <div class="servicio-body">
+            <div class="servicio-icon">🪒</div>
+            <div class="servicio-title">Perfilado de Barba</div>
+            <div class="servicio-desc">Afeitado clásico con navaja, perfilado, aceites hidratantes y acabado impecable de barbero tradicional.</div>
+            <div class="servicio-price">Desde 15€ · 20-30 min</div>
+          </div>
+        </div>
+        <div class="servicio-card fade-in">
+          <div class="servicio-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Tinte"></div>
+          <div class="servicio-body">
+            <div class="servicio-icon">🎨</div>
+            <div class="servicio-title">Color y Tinte</div>
+            <div class="servicio-desc">Coloración profesional con productos de alta gama. Mechas, balayage, color liso y técnicas de moda.</div>
+            <div class="servicio-price">Desde 45€ · 90-120 min</div>
+          </div>
+        </div>
+        <div class="servicio-card fade-in">
+          <div class="servicio-img"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80" alt="Peinado"></div>
+          <div class="servicio-body">
+            <div class="servicio-icon">✨</div>
+            <div class="servicio-title">Peinados y Recogidos</div>
+            <div class="servicio-desc">Peinados para bodas, eventos y ocasiones especiales. Ondas, liso perfecto, trenzas y recogidos elegantes.</div>
+            <div class="servicio-price">Desde 35€ · 60-90 min</div>
+          </div>
+        </div>
+        <div class="servicio-card fade-in">
+          <div class="servicio-img"><img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=600&q=80" alt="Tratamiento"></div>
+          <div class="servicio-body">
+            <div class="servicio-icon">💆</div>
+            <div class="servicio-title">Tratamientos Capilares</div>
+            <div class="servicio-desc">Hidratación profunda, keratina, botox capilar y tratamientos reparadores para un cabello perfecto.</div>
+            <div class="servicio-price">Desde 55€ · 60-90 min</div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <script>
-        // Lógica de navegación
-        function abrirLogin() {
-            document.getElementById('web-publica').classList.add('hidden-view');
-            document.getElementById('seccion-login').classList.remove('hidden-view');
-        }
+<!-- ===== GALERÍA ===== -->
+<section class="section" id="galeria">
+  <div class="section-header fade-in">
+    <div>
+      <p class="section-label">Nuestro trabajo</p>
+      <h2 class="section-title">Galería</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Resultados que hablan por sí solos.</p>
+    </div>
+  </div>
+  <div class="galeria-grid fade-in">
+    <div class="galeria-item g1"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=80" alt=""><div class="overlay"></div></div>
+    <div class="galeria-item g2"><img src="https://images.unsplash.com/photo-1584466977773-e625c37cdd50?w=600&q=80" alt=""><div class="overlay"></div></div>
+    <div class="galeria-item g3"><img src="https://images.unsplash.com/photo-1550159930-40066082a4fc?w=600&q=80" alt=""><div class="overlay"></div></div>
+    <div class="galeria-item g4"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80" alt=""><div class="overlay"></div></div>
+  </div>
+</section>
 
-        function cerrarTodo() {
-            document.getElementById('web-publica').classList.remove('hidden-view');
-            document.getElementById('seccion-login').classList.add('hidden-view');
-            document.getElementById('panel-admin').classList.add('hidden-view');
-        }
+<!-- ===== OFERTA ESPECIAL ===== -->
+<div id="oferta">
+  <div class="section-inner">
+    <div class="oferta-wrap fade-in">
+      <div>
+        <p class="section-label">Oferta especial</p>
+        <div class="oferta-badge">-20%</div>
+        <h2 class="oferta-title">Primera visita<br>con descuento</h2>
+        <p class="oferta-sub">Ven a conocernos y disfruta de un 20% de descuento en tu primer servicio. Sin condiciones, sin letra pequeña.</p>
+        <div class="oferta-list">
+          <div class="oferta-item">Válido para cualquier servicio</div>
+          <div class="oferta-item">Solo con cita previa</div>
+          <div class="oferta-item">Productos premium incluidos</div>
+          <div class="oferta-item">Sin compromiso ni permanencia</div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">📅 Reservar ahora</button>
+          <a class="btn-wa" href="https://wa.me/34600000000?text=Hola,%20quiero%20reservar%20con%20el%20descuento%20de%20primera%20visita" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="oferta-img">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80" alt="Barbería">
+        <div class="oferta-rating">
+          <div class="rating-num">4.9</div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-label">Valoración Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        function validarLogin() {
-            const u = document.getElementById('user').value;
-            const p = document.getElementById('pass').value;
-            // Login simple para el MVP
-            if(u === 'admin' && p === 'admin') {
-                document.getElementById('seccion-login').classList.add('hidden-view');
-                document.getElementById('panel-admin').classList.remove('hidden-view');
-                renderAgenda();
-            } else {
-                alert("Credenciales incorrectas (Prueba: admin/admin)");
-            }
-        }
+<!-- ===== NOSOTROS ===== -->
+<section class="section">
+  <div class="section-header fade-in">
+    <div>
+      <p class="section-label">¿Por qué elegirnos?</p>
+      <h2 class="section-title">La barbería de confianza<br>de tu ciudad</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="features-grid fade-in">
+    <div class="feature-card">
+      <div class="feature-icon">🎓</div>
+      <div class="feature-title">Profesionales formados</div>
+      <div class="feature-desc">Equipo con formación continua en las últimas tendencias y técnicas internacionales de barbería y peluquería.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✨</div>
+      <div class="feature-title">Productos de alta gama</div>
+      <div class="feature-desc">Solo usamos marcas premium como Kerastase, Wella, American Crew y L'Oréal Professional.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">❤️</div>
+      <div class="feature-title">Trato personalizado</div>
+      <div class="feature-desc">Cada cliente es único. Escuchamos tus ideas y las llevamos a la realidad con máximo detalle y cuidado.</div>
+    </div>
+  </div>
+</section>
 
-        // Datos y Panel
-        const citas = [
-            { id: 1, hora: "10:30", cliente: "Carlos Ruiz", servicio: "Corte Signature", tel: "34600112233" },
-            { id: 2, hora: "12:00", cliente: "Fran Murcia", servicio: "Afeitado Clásico", tel: "34611223344" }
-        ];
+<!-- ===== TESTIMONIOS ===== -->
+<div id="testimonios">
+  <div class="section-inner">
+    <div class="section" style="padding:100px 40px;">
+      <div class="section-header fade-in">
+        <div>
+          <p class="section-label">Opiniones reales</p>
+          <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+          <div class="divider"></div>
+        </div>
+      </div>
+      <div class="testi-grid fade-in">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"El mejor corte que me han hecho en mi vida. El ambiente es increíble, se nota que son profesionales de verdad. Ya no voy a ningún otro sitio."</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop&q=80" alt="">
+            <div><div class="testi-name">Carlos Martínez</div><div class="testi-service">Corte + Barba · Hace 2 semanas</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Me hicieron un balayage precioso y el corte quedó exactamente como quería. El trato es genial y los precios muy razonables para la calidad que dan."</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=100&h=100&fit=crop&q=80" alt="">
+            <div><div class="testi-name">Laura Sánchez</div><div class="testi-service">Balayage + Corte · Hace 1 mes</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Vine para mi boda y el peinado fue espectacular. Duraron todo el día. Son unos artistas. 100% recomendable para cualquier ocasión especial."</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&q=80" alt="">
+            <div><div class="testi-name">Ana Jiménez</div><div class="testi-service">Peinado novia · Hace 3 meses</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        function renderAgenda() {
-            const container = document.getElementById('lista-citas');
-            document.getElementById('fecha-actual').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-            container.innerHTML = '';
-            citas.forEach(c => {
-                container.innerHTML += `
-                    <div class="glass p-6 rounded-3xl flex items-center justify-between hover:border-[#d4af37]/40 transition group">
-                        <div class="flex items-center gap-6">
-                            <span class="text-2xl font-black text-gray-700 group-hover:text-[#d4af37] transition">${c.hora}</span>
-                            <div>
-                                <h4 class="font-bold">${c.cliente}</h4>
-                                <p class="text-xs text-gray-500 uppercase">${c.servicio}</p>
-                            </div>
-                        </div>
-                        <button onclick="whatsapp('${c.tel}', '${c.cliente}', '${c.hora}')" class="w-12 h-12 rounded-2xl bg-green-500/10 flex items-center justify-center text-green-500 hover:bg-green-500 hover:text-white transition">
-                            <i class="fab fa-whatsapp text-xl"></i>
-                        </button>
-                    </div>
-                `;
-            });
-        }
+<!-- ===== CONTACTO ===== -->
+<section class="section" id="contacto">
+  <div class="section-header fade-in">
+    <div>
+      <p class="section-label">Contáctanos</p>
+      <h2 class="section-title">Estamos aquí para ti</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="contacto-grid fade-in">
+    <div class="contacto-info">
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div><div class="info-label">Teléfono</div><div class="info-value"><a href="tel:600000000">600 000 000</a></div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">💬</div>
+        <div><div class="info-label">WhatsApp</div><div class="info-value"><a href="https://wa.me/34600000000" target="_blank">+34 600 000 000</a></div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div><div class="info-label">Dirección</div><div class="info-value">C/ Ejemplo 10, Murcia</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕐</div>
+        <div><div class="info-label">Horario</div><div class="info-value">Lun–Vie: 9:00–20:00<br>Sáb: 9:00–15:00</div></div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12594!2d-1.1307!3d37.9834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6380e7a0c2a0e1%3A0x0!2sMurcia!5e0!3m2!1ses!2ses!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="contacto-form">
+      <div class="form-title">📅 Solicita tu cita</div>
+      <div id="form-success" class="form-success">✅ ¡Cita solicitada! Te llamamos en breve para confirmar.</div>
+      <div class="form-row">
+        <div class="form-group"><label>Nombre *</label><input type="text" id="f-name" placeholder="Tu nombre"></div>
+        <div class="form-group"><label>Teléfono *</label><input type="tel" id="f-phone" placeholder="600 000 000"></div>
+      </div>
+      <div class="form-group">
+        <label>Servicio</label>
+        <select id="f-service">
+          <option value="">Seleccionar servicio...</option>
+          <option>Corte hombre</option>
+          <option>Corte mujer</option>
+          <option>Perfilado de barba</option>
+          <option>Color y tinte</option>
+          <option>Peinado / Recogido</option>
+          <option>Tratamiento capilar</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Fecha preferida</label><input type="date" id="f-date"></div>
+      <div class="form-group"><label>Mensaje (opcional)</label><textarea id="f-msg" placeholder="¿Algo que quieras comentarnos?"></textarea></div>
+      <button class="btn-primary" style="width:100%;padding:14px;" onclick="submitForm()">Solicitar Cita</button>
+      <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:12px;">🔒 Tus datos están protegidos y no serán cedidos a terceros</p>
+    </div>
+  </div>
+</section>
 
-        function whatsapp(t, n, h) {
-            const m = encodeURIComponent(`Hola ${n}, recordatorio de tu cita a las ${h} en Luxe & Cut.`);
-            window.open(`https://wa.me/${t}?text=${m}`, '_blank');
-        }
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">✦ BarberStudio</div>
+        <p class="footer-desc">Tu peluquería y barbería de referencia. Profesionalidad, estilo y un trato único en cada visita.</p>
+        <div class="footer-social">
+          <div class="social-btn">📷</div>
+          <div class="social-btn">📘</div>
+          <div class="social-btn">🐦</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Servicios</div>
+        <div class="footer-links">
+          <a href="#servicios">Corte hombre</a>
+          <a href="#servicios">Corte mujer</a>
+          <a href="#servicios">Barba</a>
+          <a href="#servicios">Color y tinte</a>
+          <a href="#servicios">Peinados</a>
+          <a href="#servicios">Tratamientos</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <div class="footer-links">
+          <a href="tel:600000000">📞 600 000 000</a>
+          <a href="https://wa.me/34600000000">💬 WhatsApp</a>
+          <a href="#contacto">📍 C/ Ejemplo 10, Murcia</a>
+          <a href="#contacto">🕐 Lun–Vie 9:00–20:00</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 BarberStudio · Todos los derechos reservados</span>
+      <a class="footer-panel-link" onclick="showLogin()">⚙ Panel de gestión</a>
+    </div>
+  </div>
+</footer>
 
-        function bot(t) {
-            const c = document.getElementById('chat-msgs');
-            const r = t === 'P' ? "Corte: 25€, Afeitado: 20€." : "Calle Gran Vía, 12, Murcia.";
-            c.innerHTML += `<p class="bg-[#d4af37]/20 p-2 rounded-lg text-right">Solicitud enviada</p>`;
-            setTimeout(() => { c.innerHTML += `<p class="bg-white/10 p-2 rounded-lg">${r}</p>`; }, 400);
-        }
-    </script>
+<!-- ===== FLOAT WA ===== -->
+<a class="float-wa" href="https://wa.me/34600000000?text=Hola,%20me%20gustaría%20pedir%20una%20cita" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div class="float-chat" onclick="toggleChat()">🤖</div>
+
+<!-- ===== CHATBOT ===== -->
+<div class="chatbot-window" id="chatbot">
+  <div class="chat-header">
+    <div class="chat-avatar">✂️</div>
+    <div><div class="chat-name">BarberStudio</div><div class="chat-status">🟢 En línea ahora</div></div>
+    <div class="chat-close" onclick="toggleChat()">✕</div>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg msg-bot">¡Hola! 👋 Soy el asistente de BarberStudio. ¿En qué puedo ayudarte?</div>
+  </div>
+  <div class="chat-options" id="chat-options">
+    <button class="chat-opt" onclick="chatReply('horarios')">🕐 Horarios</button>
+    <button class="chat-opt" onclick="chatReply('precios')">💰 Precios</button>
+    <button class="chat-opt" onclick="chatReply('ubicacion')">📍 Ubicación</button>
+    <button class="chat-opt" onclick="chatReply('cita')">📅 Reservar cita</button>
+    <button class="chat-opt" onclick="chatReply('contacto')">📞 Contacto</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<!-- ===== LOGIN ===== -->
+<div id="login-overlay">
+  <div class="login-box">
+    <div class="login-logo">✦ BarberStudio</div>
+    <div class="login-sub">Panel de Administración</div>
+    <div class="login-group"><label>Usuario</label><input type="text" id="login-user" placeholder="admin"></div>
+    <div class="login-group"><label>Contraseña</label><input type="password" id="login-pass" placeholder="••••••••" onkeypress="if(event.key==='Enter')doLogin()"></div>
+    <div class="login-error" id="login-error">❌ Usuario o contraseña incorrectos</div>
+    <button class="login-btn" onclick="doLogin()">Entrar al Panel →</button>
+    <a class="login-back" onclick="hideLogin()">← Volver a la web</a>
+  </div>
+</div>
+
+<!-- ===== PANEL ===== -->
+<div id="panel-overlay">
+  <div class="panel-sidebar">
+    <div class="panel-logo">✦ BarberStudio<small>Panel de Gestión</small></div>
+    <nav class="panel-nav">
+      <div class="panel-section-label">Principal</div>
+      <div class="nav-item active" onclick="showView('dashboard')"><span>📊</span><span>Dashboard</span></div>
+      <div class="panel-section-label">Gestión</div>
+      <div class="nav-item" onclick="showView('agenda')"><span>📅</span><span>Agenda</span></div>
+      <div class="nav-item" onclick="showView('citas')"><span>✂️</span><span>Citas</span></div>
+      <div class="nav-item" onclick="showView('clientes')"><span>👥</span><span>Clientes</span></div>
+      <div class="panel-section-label">Herramientas</div>
+      <div class="nav-item" onclick="showView('whatsapp')"><span>💬</span><span>WhatsApp</span></div>
+      <div class="nav-item" onclick="showView('chatbot-edit')"><span>🤖</span><span>Chatbot</span></div>
+    </nav>
+    <div class="panel-footer">
+      <div class="logout-btn" onclick="doLogout()"><span>🚪</span><span>Cerrar sesión</span></div>
+    </div>
+  </div>
+  <div class="panel-main">
+    <div class="panel-topbar">
+      <div class="panel-topbar-title" id="panel-title">Dashboard</div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:13px;color:var(--text-muted);">Hoy: <span id="today-date"></span></span>
+        <div style="width:36px;height:36px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;">👤</div>
+      </div>
+    </div>
+    <div class="panel-content">
+
+      <!-- DASHBOARD -->
+      <div class="panel-view active" id="view-dashboard">
+        <div class="dash-grid">
+          <div class="dash-card gold"><div class="dash-card-icon">✂️</div><div class="dash-card-label">Citas hoy</div><div class="dash-card-value" id="dc-today">5</div><div class="dash-card-sub">Próxima: 11:00</div></div>
+          <div class="dash-card"><div class="dash-card-icon">👥</div><div class="dash-card-label">Clientes hoy</div><div class="dash-card-value" id="dc-clients">5</div><div class="dash-card-sub">3 confirmados</div></div>
+          <div class="dash-card"><div class="dash-card-icon">💰</div><div class="dash-card-label">Ingresos hoy</div><div class="dash-card-value" id="dc-income">185€</div><div class="dash-card-sub">Estimado</div></div>
+          <div class="dash-card"><div class="dash-card-icon">📈</div><div class="dash-card-label">Este mes</div><div class="dash-card-value">2.840€</div><div class="dash-card-sub">+12% vs anterior</div></div>
+        </div>
+        <div class="panel-table-wrap">
+          <div class="panel-table-header">
+            <div class="panel-table-title">Citas de hoy</div>
+            <button class="btn-small btn-small-gold" onclick="openNewCita()">+ Nueva Cita</button>
+          </div>
+          <table>
+            <thead><tr><th>Hora</th><th>Cliente</th><th>Servicio</th><th>Estado</th><th>Acciones</th></tr></thead>
+            <tbody id="dash-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- AGENDA VISUAL -->
+      <div class="panel-view" id="view-agenda">
+        <div class="agenda-wrap">
+          <div class="agenda-days">
+            <div style="padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.05);font-weight:700;font-size:13px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Esta semana</div>
+            <div id="agenda-day-list"></div>
+          </div>
+          <div class="agenda-timeline">
+            <div class="agenda-timeline-header">
+              <div id="agenda-selected-day" style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;">Lunes</div>
+              <button class="btn-small btn-small-gold" onclick="openNewCita()">+ Añadir cita</button>
+            </div>
+            <div class="agenda-slots" id="agenda-slots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CITAS -->
+      <div class="panel-view" id="view-citas">
+        <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
+          <button class="btn-small btn-small-gold" onclick="openNewCita()">+ Nueva Cita</button>
+          <input class="search-input" style="max-width:300px;" placeholder="Buscar cita..." oninput="filterCitas(this.value)">
+        </div>
+        <div class="panel-table-wrap">
+          <div class="panel-table-header"><div class="panel-table-title">Todas las citas</div></div>
+          <table><thead><tr><th>Cliente</th><th>Teléfono</th><th>Servicio</th><th>Fecha / Hora</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="citas-table"></tbody></table>
+        </div>
+      </div>
+
+      <!-- CLIENTES -->
+      <div class="panel-view" id="view-clientes">
+        <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
+          <button class="btn-small btn-small-gold" onclick="openNewCliente()">+ Nuevo Cliente</button>
+          <input class="search-input" style="max-width:300px;" placeholder="Buscar cliente..." oninput="filterClientes(this.value)">
+        </div>
+        <div id="clientes-list"></div>
+      </div>
+
+      <!-- WHATSAPP -->
+      <div class="panel-view" id="view-whatsapp">
+        <div style="margin-bottom:24px;">
+          <p class="section-label">Mensajes rápidos</p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;">WhatsApp Rápido</h3>
+          <p style="font-size:14px;color:var(--text-muted);">Envía mensajes predefinidos a tus clientes con un solo clic.</p>
+        </div>
+        <div class="wa-templates">
+          <div class="wa-template">
+            <div class="wa-template-title">✅ Confirmar cita</div>
+            <div class="wa-template-text">Hola [nombre], te confirmamos tu cita en BarberStudio para el [fecha] a las [hora]. ¡Te esperamos! ✂️</div>
+            <button class="wa-send-btn" onclick="sendWA('confirmar')">Enviar por WhatsApp</button>
+          </div>
+          <div class="wa-template">
+            <div class="wa-template-title">🔔 Recordatorio</div>
+            <div class="wa-template-text">Hola [nombre], te recordamos que mañana tienes cita en BarberStudio a las [hora]. ¡Nos vemos! 💈</div>
+            <button class="wa-send-btn" onclick="sendWA('recordar')">Enviar por WhatsApp</button>
+          </div>
+          <div class="wa-template">
+            <div class="wa-template-title">🙏 Gracias por venir</div>
+            <div class="wa-template-text">Gracias por visitarnos, [nombre]! Ha sido un placer. Recuerda que puedes reservar tu próxima cita cuando quieras. ⭐</div>
+            <button class="wa-send-btn" onclick="sendWA('gracias')">Enviar por WhatsApp</button>
+          </div>
+          <div class="wa-template">
+            <div class="wa-template-title">❌ Cancelación</div>
+            <div class="wa-template-text">Hola [nombre], lamentablemente debemos cancelar tu cita del [fecha]. Contáctanos para reagendar. Disculpa las molestias. 🙏</div>
+            <button class="wa-send-btn" onclick="sendWA('cancelar')">Enviar por WhatsApp</button>
+          </div>
+        </div>
+        <div style="margin-top:32px;background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:24px;">
+          <div style="font-weight:700;margin-bottom:16px;">Envío manual</div>
+          <div class="modal-row" style="margin-bottom:12px;">
+            <div class="modal-group"><label>Teléfono</label><input type="tel" id="wa-manual-phone" placeholder="+34 600 000 000"></div>
+            <div class="modal-group"><label>Plantilla</label><select id="wa-manual-tpl"><option>Confirmar cita</option><option>Recordatorio</option><option>Gracias por venir</option><option>Cancelación</option></select></div>
+          </div>
+          <div class="modal-group"><label>Mensaje personalizado</label><textarea id="wa-manual-msg" placeholder="Escribe tu mensaje aquí..."></textarea></div>
+          <button class="btn-small btn-small-gold" onclick="sendManualWA()">💬 Enviar por WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- CHATBOT EDIT -->
+      <div class="panel-view" id="view-chatbot-edit">
+        <div style="margin-bottom:24px;">
+          <p class="section-label">Configuración</p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;">Editor del Chatbot</h3>
+          <p style="font-size:14px;color:var(--text-muted);">Personaliza las respuestas automáticas del chatbot público.</p>
+        </div>
+        <div id="chatbot-editor"></div>
+        <button class="btn-small btn-small-gold" style="margin-top:20px;" onclick="saveChatbot()">💾 Guardar cambios</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL NUEVA CITA ===== -->
+<div class="modal-overlay" id="modal-cita">
+  <div class="modal">
+    <div class="modal-title">Nueva Cita <span class="modal-close" onclick="closeModal('modal-cita')">✕</span></div>
+    <div class="modal-row"><div class="modal-group"><label>Nombre *</label><input type="text" id="mc-name" placeholder="Nombre del cliente"></div><div class="modal-group"><label>Teléfono *</label><input type="tel" id="mc-phone" placeholder="600 000 000"></div></div>
+    <div class="modal-group"><label>Servicio</label><select id="mc-service"><option>Corte hombre</option><option>Corte mujer</option><option>Perfilado de barba</option><option>Color y tinte</option><option>Peinado / Recogido</option><option>Tratamiento capilar</option><option>Otro</option></select></div>
+    <div class="modal-row"><div class="modal-group"><label>Fecha</label><input type="date" id="mc-date"></div><div class="modal-group"><label>Hora</label><input type="time" id="mc-time" value="10:00"></div></div>
+    <div class="modal-group"><label>Notas</label><textarea id="mc-notes" placeholder="Notas opcionales..."></textarea></div>
+    <div class="modal-btns"><button class="btn-small btn-small-gold" onclick="saveCita()">💾 Guardar Cita</button><button class="btn-small btn-small-outline" onclick="closeModal('modal-cita')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- ===== MODAL NUEVO CLIENTE ===== -->
+<div class="modal-overlay" id="modal-cliente">
+  <div class="modal">
+    <div class="modal-title">Nuevo Cliente <span class="modal-close" onclick="closeModal('modal-cliente')">✕</span></div>
+    <div class="modal-row"><div class="modal-group"><label>Nombre *</label><input type="text" id="cl-name" placeholder="Nombre completo"></div><div class="modal-group"><label>Teléfono *</label><input type="tel" id="cl-phone" placeholder="600 000 000"></div></div>
+    <div class="modal-row"><div class="modal-group"><label>Email</label><input type="email" id="cl-email" placeholder="email@ejemplo.com"></div><div class="modal-group"><label>Última visita</label><input type="date" id="cl-lastvisit"></div></div>
+    <div class="modal-group"><label>Servicios habituales</label><input type="text" id="cl-services" placeholder="Ej: Corte, Barba, Tinte"></div>
+    <div class="modal-group"><label>Notas</label><textarea id="cl-notes" placeholder="Notas sobre el cliente..."></textarea></div>
+    <div class="modal-btns"><button class="btn-small btn-small-gold" onclick="saveCliente()">💾 Guardar Cliente</button><button class="btn-small btn-small-outline" onclick="closeModal('modal-cliente')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- ===== MODAL DETALLE CITA ===== -->
+<div class="modal-overlay" id="modal-detail">
+  <div class="modal">
+    <div class="modal-title"><span id="detail-title">Detalle Cita</span> <span class="modal-close" onclick="closeModal('modal-detail')">✕</span></div>
+    <div id="detail-content"></div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+let citas = [
+  {id:1,name:'María García',phone:'600111222',service:'Corte mujer',date:'2025-05-07',time:'10:00',status:'confirmed',notes:''},
+  {id:2,name:'Carlos López',phone:'600333444',service:'Corte + Barba',date:'2025-05-07',time:'11:00',status:'pending',notes:'Fade bajo'},
+  {id:3,name:'Laura Martínez',phone:'600555666',service:'Tinte mechas',date:'2025-05-07',time:'12:00',status:'confirmed',notes:''},
+  {id:4,name:'Pedro Sánchez',phone:'600777888',service:'Corte hombre',date:'2025-05-07',time:'16:00',status:'arrived',notes:''},
+  {id:5,name:'Ana Jiménez',phone:'600999000',service:'Peinado recogido',date:'2025-05-07',time:'17:00',status:'pending',notes:'Para boda'},
+  {id:6,name:'Javier Ruiz',phone:'601111222',service:'Barba',date:'2025-05-08',time:'10:30',status:'pending',notes:''},
+  {id:7,name:'Sofía Navarro',phone:'601333444',service:'Corte mujer',date:'2025-05-08',time:'12:00',status:'confirmed',notes:''},
+  {id:8,name:'Miguel Torres',phone:'601555666',service:'Corte hombre',date:'2025-05-09',time:'11:00',status:'pending',notes:''},
+];
+let clientes = [
+  {id:1,name:'María García',phone:'600111222',email:'maria@email.com',lastvisit:'2025-05-07',services:['Corte mujer','Tinte'],notes:'Prefiere productos sin sulfatos'},
+  {id:2,name:'Carlos López',phone:'600333444',email:'carlos@email.com',lastvisit:'2025-05-07',services:['Corte hombre','Barba'],notes:'Fade bajo siempre'},
+  {id:3,name:'Laura Martínez',phone:'600555666',email:'laura@email.com',lastvisit:'2025-04-20',services:['Tinte','Tratamiento'],notes:''},
+  {id:4,name:'Pedro Sánchez',phone:'600777888',email:'pedro@email.com',lastvisit:'2025-05-07',services:['Corte hombre'],notes:''},
+  {id:5,name:'Ana Jiménez',phone:'600999000',email:'ana@email.com',lastvisit:'2025-03-15',services:['Peinado'],notes:'Boda pendiente'},
+];
+let chatbotFAQ = [
+  {q:'horarios',a:'Nuestro horario es de Lunes a Viernes de 9:00 a 20:00 y Sábados de 9:00 a 15:00. Los domingos permanecemos cerrados. 🕐'},
+  {q:'precios',a:'Corte hombre desde 18€ · Corte mujer desde 28€ · Barba desde 15€ · Color desde 45€ · Tratamientos desde 55€. ¡Primera visita con 20% de descuento! 💰'},
+  {q:'ubicacion',a:'Estamos en C/ Ejemplo 10, Murcia. Fácil aparcamiento. Puedes vernos en Google Maps. 📍'},
+  {q:'cita',a:'Puedes reservar cita aquí mismo por WhatsApp 👉 wa.me/34600000000 o por teléfono 600 000 000. ¡Te esperamos! 📅'},
+  {q:'contacto',a:'📞 Teléfono: 600 000 000\n💬 WhatsApp: +34 600 000 000\n📧 Email: info@barberstudio.es'},
+];
+let nextId = 10;
+const estadoLabels = {pending:'Pendiente',confirmed:'Confirmado',arrived:'Vino',no_show:'No vino',cancelled:'Cancelado'};
+const estadoClass = {pending:'badge-pending',confirmed:'badge-confirmed',arrived:'badge-arrived',no_show:'badge-no-show',cancelled:'badge-cancelled'};
+
+// ===== SCROLL =====
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// ===== FADE IN =====
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// ===== FORM =====
+function submitForm(){
+  const n=document.getElementById('f-name').value;
+  const p=document.getElementById('f-phone').value;
+  if(!n||!p){alert('Por favor, rellena los campos obligatorios.');return;}
+  document.getElementById('form-success').style.display='block';
+  document.getElementById('f-name').value='';
+  document.getElementById('f-phone').value='';
+  setTimeout(()=>document.getElementById('form-success').style.display='none',4000);
+}
+
+// ===== CHATBOT =====
+const chatResponses = {
+  horarios:'Nuestro horario es Lun–Vie 9:00–20:00 y Sáb 9:00–15:00. 🕐',
+  precios:'Corte desde 18€, barba desde 15€, tinte desde 45€. Primera visita con 20% de dto! 💰',
+  ubicacion:'Estamos en C/ Ejemplo 10, Murcia. 📍 Google Maps disponible.',
+  cita:'Puedes reservar por WhatsApp o llamando al 600 000 000 📅',
+  contacto:'📞 600 000 000 · 💬 WhatsApp +34 600 000 000'
+};
+function toggleChat(){
+  const c=document.getElementById('chatbot');
+  c.classList.toggle('open');
+}
+function chatReply(key){
+  addMsg(key==='horarios'?'¿Cuál es el horario?':key==='precios'?'¿Cuáles son los precios?':key==='ubicacion'?'¿Dónde estáis?':key==='cita'?'Quiero reservar una cita':'Dame vuestro contacto','user');
+  setTimeout(()=>{
+    const resp = chatbotFAQ.find(f=>f.q===key);
+    addMsg(resp?resp.a:chatResponses[key]||'Disculpa, no entendí tu pregunta. Llámanos al 600 000 000.','bot');
+  },500);
+}
+function sendChat(){
+  const inp=document.getElementById('chat-input');
+  const val=inp.value.trim();if(!val)return;
+  addMsg(val,'user');inp.value='';
+  const lower=val.toLowerCase();
+  let resp='No estoy seguro de cómo responder a eso. Llámanos al 600 000 000 o escríbenos por WhatsApp. 😊';
+  chatbotFAQ.forEach(f=>{if(lower.includes(f.q)||lower.includes(f.q.slice(0,5)))resp=f.a;});
+  if(lower.includes('hola')||lower.includes('buenas'))resp='¡Hola! 👋 ¿En qué puedo ayudarte?';
+  setTimeout(()=>addMsg(resp,'bot'),500);
+}
+function addMsg(text,type){
+  const d=document.createElement('div');
+  d.className=`msg msg-${type}`;d.textContent=text;
+  const msgs=document.getElementById('chat-messages');
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+}
+
+// ===== LOGIN =====
+function showLogin(){document.getElementById('login-overlay').classList.add('active');}
+function hideLogin(){document.getElementById('login-overlay').classList.remove('active');}
+function doLogin(){
+  const u=document.getElementById('login-user').value;
+  const p=document.getElementById('login-pass').value;
+  if(u==='admin'&&p==='1234'){
+    hideLogin();
+    showPanel();
+  } else {
+    document.getElementById('login-error').style.display='block';
+    setTimeout(()=>document.getElementById('login-error').style.display='none',3000);
+  }
+}
+function doLogout(){
+  document.getElementById('panel-overlay').style.display='none';
+}
+
+// ===== PANEL =====
+function showPanel(){
+  document.getElementById('panel-overlay').style.display='flex';
+  const d=new Date();
+  document.getElementById('today-date').textContent=d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+  renderDashboard();
+  renderAgenda();
+  renderCitas();
+  renderClientes();
+  renderChatbotEditor();
+}
+function showView(v){
+  document.querySelectorAll('.panel-view').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  event.currentTarget.classList.add('active');
+  const titles={dashboard:'Dashboard',agenda:'Agenda Visual',citas:'Gestión de Citas',clientes:'Clientes',whatsapp:'WhatsApp Rápido','chatbot-edit':'Editor Chatbot'};
+  document.getElementById('panel-title').textContent=titles[v]||v;
+  if(v==='agenda')renderAgenda();
+}
+
+// ===== DASHBOARD =====
+function renderDashboard(){
+  const today=new Date().toISOString().slice(0,10);
+  const todayCitas=citas.filter(c=>c.date===today);
+  document.getElementById('dc-today').textContent=todayCitas.length;
+  document.getElementById('dc-clients').textContent=todayCitas.length;
+  const income={'Corte hombre':18,'Corte mujer':28,'Corte + Barba':33,'Barba':15,'Tinte mechas':65,'Peinado recogido':45,'Tratamiento capilar':60};
+  let total=0;todayCitas.forEach(c=>{Object.keys(income).forEach(k=>{if(c.service.includes(k.split(' ')[0]))total+=income[k]||20;});});
+  document.getElementById('dc-income').textContent=(total||185)+'€';
+  const tb=document.getElementById('dash-table');
+  tb.innerHTML='';
+  (todayCitas.length?todayCitas:citas.slice(0,5)).forEach(c=>{
+    tb.innerHTML+=`<tr>
+      <td style="font-weight:700;color:var(--gold);">${c.time}</td>
+      <td>${c.name}</td>
+      <td>${c.service}</td>
+      <td><span class="badge ${estadoClass[c.status]}">${estadoLabels[c.status]}</span></td>
+      <td><div class="estado-btns">
+        ${Object.keys(estadoLabels).map(k=>`<button class="estado-btn e-${k.replace('_','-')}" onclick="setCitaStatus(${c.id},'${k}')">${estadoLabels[k]}</button>`).join('')}
+        <button class="wa-btn" onclick="quickWA('${c.phone}','${c.name}','${c.time}')">💬</button>
+      </div></td>
+    </tr>`;
+  });
+}
+
+// ===== AGENDA =====
+let selectedAgendaDay=0;
+const diasSemana=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const diasLargos=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+function renderAgenda(){
+  const today=new Date();
+  const dayList=document.getElementById('agenda-day-list');
+  dayList.innerHTML='';
+  for(let i=0;i<7;i++){
+    const d=new Date(today);d.setDate(today.getDate()+i);
+    const ds=d.toISOString().slice(0,10);
+    const count=citas.filter(c=>c.date===ds).length;
+    const div=document.createElement('div');
+    div.className='agenda-day-item'+(i===selectedAgendaDay?' active':'');
+    div.innerHTML=`<div class="agenda-day-name">${diasLargos[d.getDay()]} ${d.getDate()}</div><div class="agenda-day-count">${count} cita${count!==1?'s':''}</div>`;
+    div.onclick=(()=>{const idx=i;return()=>{selectedAgendaDay=idx;renderAgenda();}})();
+    dayList.appendChild(div);
+  }
+  const selDate=new Date(today);selDate.setDate(today.getDate()+selectedAgendaDay);
+  const selDs=selDate.toISOString().slice(0,10);
+  document.getElementById('agenda-selected-day').textContent=`${diasLargos[selDate.getDay()]} ${selDate.getDate()}`;
+  const slots=document.getElementById('agenda-slots');
+  slots.innerHTML='';
+  const hours=['09:00','10:00','11:00','12:00','13:00','16:00','17:00','18:00','19:00'];
+  hours.forEach(h=>{
+    const cita=citas.find(c=>c.date===selDs&&c.time===h);
+    const div=document.createElement('div');
+    div.className='agenda-slot';
+    if(cita){
+      div.innerHTML=`<div class="slot-time">${h}</div><div class="slot-content occupied" onclick="showDetail(${cita.id})"><div class="slot-client">${cita.name}</div><div class="slot-service">${cita.service} · <span class="badge ${estadoClass[cita.status]}">${estadoLabels[cita.status]}</span></div></div>`;
+    } else {
+      div.innerHTML=`<div class="slot-time">${h}</div><div class="slot-content empty" onclick="openNewCitaAt('${selDs}','${h}')"><div class="slot-empty-text">+ Añadir cita</div></div>`;
+    }
+    slots.appendChild(div);
+  });
+}
+
+// ===== CITAS =====
+function renderCitas(filter=''){
+  const tb=document.getElementById('citas-table');
+  tb.innerHTML='';
+  citas.filter(c=>!filter||c.name.toLowerCase().includes(filter.toLowerCase())||c.service.toLowerCase().includes(filter.toLowerCase())).forEach(c=>{
+    tb.innerHTML+=`<tr>
+      <td style="font-weight:600;">${c.name}</td>
+      <td><a href="tel:${c.phone}" style="color:var(--text-muted);text-decoration:none;">${c.phone}</a></td>
+      <td>${c.service}</td>
+      <td>${c.date} ${c.time}</td>
+      <td><span class="badge ${estadoClass[c.status]}">${estadoLabels[c.status]}</span></td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button class="btn-small btn-small-outline" onclick="showDetail(${c.id})">Ver</button>
+        <button class="wa-btn" onclick="quickWA('${c.phone}','${c.name}','${c.time}')">💬 WA</button>
+      </td>
+    </tr>`;
+  });
+}
+function filterCitas(v){renderCitas(v);}
+
+// ===== CLIENTES =====
+function renderClientes(filter=''){
+  const list=document.getElementById('clientes-list');
+  list.innerHTML='';
+  clientes.filter(c=>!filter||c.name.toLowerCase().includes(filter.toLowerCase())).forEach(c=>{
+    const div=document.createElement('div');
+    div.className='cliente-card';
+    div.innerHTML=`
+      <div class="cliente-avatar">${c.name[0]}</div>
+      <div class="cliente-info">
+        <div class="cliente-name">${c.name}</div>
+        <div class="cliente-meta">📞 ${c.phone}${c.email?' · ✉️ '+c.email:''} · 📅 Última visita: ${c.lastvisit}</div>
+        ${c.notes?`<div class="cliente-meta" style="margin-top:4px;">📝 ${c.notes}</div>`:''}
+        <div class="cliente-services">${c.services.map(s=>`<span class="service-tag">${s}</span>`).join('')}</div>
+      </div>
+      <div class="wa-btns">
+        <a class="wa-btn" href="https://wa.me/34${c.phone.replace(/\s/g,'')}" target="_blank">💬 WA</a>
+        <a class="wa-btn" href="tel:${c.phone}">📞</a>
+      </div>`;
+    list.appendChild(div);
+  });
+}
+function filterClientes(v){renderClientes(v);}
+
+// ===== CHATBOT EDITOR =====
+function renderChatbotEditor(){
+  const div=document.getElementById('chatbot-editor');
+  div.innerHTML='';
+  chatbotFAQ.forEach((f,i)=>{
+    div.innerHTML+=`<div style="background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:20px;margin-bottom:12px;">
+      <div style="font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">${f.q}</div>
+      <textarea style="width:100%;background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:13px;resize:vertical;min-height:70px;" id="faq-${i}">${f.a}</textarea>
+    </div>`;
+  });
+}
+function saveChatbot(){
+  chatbotFAQ.forEach((f,i)=>{
+    const el=document.getElementById('faq-'+i);
+    if(el)f.a=el.value;
+  });
+  alert('✅ Chatbot actualizado');
+}
+
+// ===== MODALS =====
+function openModal(id){document.getElementById(id).classList.add('active');}
+function closeModal(id){document.getElementById(id).classList.remove('active');}
+function openNewCita(){
+  document.getElementById('mc-date').value=new Date().toISOString().slice(0,10);
+  openModal('modal-cita');
+}
+function openNewCitaAt(date,time){
+  document.getElementById('mc-date').value=date;
+  document.getElementById('mc-time').value=time;
+  openModal('modal-cita');
+}
+function saveCita(){
+  const n=document.getElementById('mc-name').value;
+  const p=document.getElementById('mc-phone').value;
+  if(!n||!p){alert('Rellena nombre y teléfono.');return;}
+  citas.push({
+    id:nextId++,
+    name:n,phone:p,
+    service:document.getElementById('mc-service').value,
+    date:document.getElementById('mc-date').value,
+    time:document.getElementById('mc-time').value,
+    status:'pending',
+    notes:document.getElementById('mc-notes').value
+  });
+  closeModal('modal-cita');
+  ['mc-name','mc-phone','mc-notes'].forEach(id=>document.getElementById(id).value='');
+  renderDashboard();renderCitas();renderAgenda();
+  alert('✅ Cita guardada correctamente');
+}
+function openNewCliente(){openModal('modal-cliente');}
+function saveCliente(){
+  const n=document.getElementById('cl-name').value;
+  const p=document.getElementById('cl-phone').value;
+  if(!n||!p){alert('Rellena nombre y teléfono.');return;}
+  clientes.push({
+    id:nextId++,name:n,phone:p,
+    email:document.getElementById('cl-email').value,
+    lastvisit:document.getElementById('cl-lastvisit').value,
+    services:document.getElementById('cl-services').value.split(',').map(s=>s.trim()).filter(Boolean),
+    notes:document.getElementById('cl-notes').value
+  });
+  closeModal('modal-cliente');
+  renderClientes();
+  alert('✅ Cliente guardado');
+}
+function setCitaStatus(id,status){
+  const c=citas.find(x=>x.id===id);
+  if(c)c.status=status;
+  renderDashboard();renderCitas();renderAgenda();
+}
+function showDetail(id){
+  const c=citas.find(x=>x.id===id);if(!c)return;
+  document.getElementById('detail-title').textContent=c.name+' - '+c.time;
+  document.getElementById('detail-content').innerHTML=`
+    <div style="display:grid;gap:12px;margin-bottom:20px;">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div><div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Servicio</div><div style="font-weight:600;">${c.service}</div></div>
+        <div><div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Fecha y hora</div><div style="font-weight:600;">${c.date} · ${c.time}</div></div>
+        <div><div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Estado</div><span class="badge ${estadoClass[c.status]}">${estadoLabels[c.status]}</span></div>
+      </div>
+      ${c.notes?`<div><div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Notas</div><div style="font-size:14px;color:var(--text-mid);">${c.notes}</div></div>`:''}
+    </div>
+    <div style="margin-bottom:16px;"><div style="font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Cambiar estado</div>
+      <div class="estado-btns">${Object.keys(estadoLabels).map(k=>`<button class="estado-btn e-${k.replace('_','-')}" onclick="setCitaStatus(${c.id},'${k}');closeModal('modal-detail')">${estadoLabels[k]}</button>`).join('')}</div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a class="wa-btn" href="https://wa.me/34${c.phone}" target="_blank" style="flex:1;text-align:center;">💬 WhatsApp</a>
+      <a class="wa-btn" href="tel:${c.phone}" style="flex:1;text-align:center;">📞 Llamar</a>
+    </div>`;
+  openModal('modal-detail');
+}
+
+// ===== WHATSAPP =====
+function sendWA(type){
+  const msgs={
+    confirmar:'Hola [nombre], te confirmamos tu cita en BarberStudio. ¡Te esperamos! ✂️',
+    recordar:'Hola [nombre], mañana tienes cita en BarberStudio. ¡Nos vemos! 💈',
+    gracias:'Gracias por visitarnos, [nombre]! Ha sido un placer. ⭐',
+    cancelar:'Hola [nombre], debemos cancelar tu cita. Contáctanos para reagendar. 🙏'
+  };
+  const phone=prompt('¿A qué número envías? (sin +34)');
+  if(phone)window.open(`https://wa.me/34${phone}?text=${encodeURIComponent(msgs[type])},'_blank'`);
+}
+function sendManualWA(){
+  const phone=document.getElementById('wa-manual-phone').value.replace(/\D/g,'');
+  const msg=document.getElementById('wa-manual-msg').value;
+  if(!phone){alert('Introduce un teléfono.');return;}
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function quickWA(phone,name,time){
+  const msg=`Hola ${name}, te recordamos tu cita en BarberStudio a las ${time}. ¡Nos vemos! 💈`;
+  window.open(`https://wa.me/34${phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(el=>{
+  el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('active');});
+});
+</script>
 </body>
 </html>
