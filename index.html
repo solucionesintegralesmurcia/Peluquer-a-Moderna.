@@ -3,195 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HairOS | Sistema de Gestión Premium</title>
+    <title>Luxe & Cut | Barbería & Peluquería Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0a0a0a; color: white; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .active-tab { border-left: 4px solid #d4af37; background: rgba(212, 175, 55, 0.1); color: #d4af37; }
         .gradient-text { background: linear-gradient(90deg, #fff, #d4af37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        .hidden-view { display: none; }
+        .service-card:hover { border-color: #d4af37; transform: translateY(-5px); }
+        transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- NAVEGACIÓN DE VISTAS (Solo para ti) -->
-    <div class="fixed top-4 right-4 z-50 flex gap-2">
-        <button onclick="toggleView('web')" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold transition">WEB PÚBLICA</button>
-        <button onclick="toggleView('panel')" class="px-4 py-2 bg-[#d4af37] text-black rounded-full text-xs font-bold transition shadow-lg shadow-[#d4af37]/20">PANEL CONTROL</button>
+    <!-- ============================================
+         SECCIÓN 1: WEB PÚBLICA (Landing Page)
+         ============================================ -->
+    <div id="web-publica">
+        <!-- Navegación -->
+        <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center glass">
+            <div class="text-xl font-black tracking-tighter">LUXE<span class="text-[#d4af37]">&</span>CUT</div>
+            <div class="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-widest">
+                <a href="#inicio" class="hover:text-[#d4af37] transition">Inicio</a>
+                <a href="#servicios" class="hover:text-[#d4af37] transition">Servicios</a>
+                <a href="#contacto" class="hover:text-[#d4af37] transition">Contacto</a>
+            </div>
+            <button onclick="document.getElementById('contacto').scrollIntoView()" class="bg-[#d4af37] text-black px-6 py-2 rounded-full font-bold text-xs">RESERVAR</button>
+        </nav>
+
+        <!-- Hero -->
+        <section id="inicio" class="h-screen flex items-center justify-center relative overflow-hidden text-center px-4">
+            <img src="https://images.unsplash.com/photo-1512690199101-837bc19b4519?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover opacity-30">
+            <div class="relative z-10">
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 gradient-text uppercase">The Master Cut</h1>
+                <p class="text-gray-400 max-w-xl mx-auto mb-8 text-lg">Experiencia premium de barbería en el corazón de Murcia. Donde la tradición se encuentra con la vanguardia.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-[#d4af37] transition">NUESTROS SERVICIOS</button>
+                    <button class="glass px-8 py-4 rounded-2xl font-bold flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> WHATSAPP</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios -->
+        <section id="servicios" class="py-24 px-6 max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16 text-center italic text-[#d4af37]">Servicios de Autor</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-[40px] service-card transition border-white/5">
+                    <i class="fa-solid fa-scissors text-3xl text-[#d4af37] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-2">Corte Signature</h3>
+                    <p class="text-gray-500 mb-4">Incluye asesoramiento, lavado y styling final.</p>
+                    <span class="text-xl font-bold">25€</span>
+                </div>
+                <div class="glass p-8 rounded-[40px] service-card transition border-white/5">
+                    <i class="fa-solid fa-razor text-3xl text-[#d4af37] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-2">Afeitado Clásico</h3>
+                    <p class="text-gray-500 mb-4">Ritual con toallas calientes y navaja artesanal.</p>
+                    <span class="text-xl font-bold">20€</span>
+                </div>
+                <div class="glass p-8 rounded-[40px] service-card transition border-white/5">
+                    <i class="fa-solid fa-crown text-3xl text-[#d4af37] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-2">Pack Premium</h3>
+                    <p class="text-gray-500 mb-4">Experiencia completa: Corte + Barba + Hidratación.</p>
+                    <span class="text-xl font-bold">40€</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer discreto con acceso a Login -->
+        <footer id="contacto" class="py-12 border-t border-white/5 text-center px-6">
+            <p class="text-gray-600 text-sm mb-4">© 2024 Luxe & Cut Murcia. Todos los derechos reservados.</p>
+            <button onclick="abrirLogin()" class="opacity-10 hover:opacity-100 transition text-[10px] uppercase tracking-widest">Acceso Staff</button>
+        </footer>
     </div>
 
-    <!-- VISTA 1: WEB PÚBLICA PREMIUM -->
-    <main id="view-web" class="transition-all duration-500">
-        <!-- Hero -->
-        <section class="relative h-screen flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070" class="w-full h-full object-cover opacity-40 scale-105">
-                <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-[#0a0a0a]"></div>
-            </div>
-            
-            <div class="relative z-10 text-center px-6">
-                <span class="text-[#d4af37] font-bold tracking-[0.3em] text-sm mb-4 block">ESTABLISHED 2024</span>
-                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 gradient-text">LUXE & CUT</h1>
-                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">Redefiniendo el arte de la barbería clásica con un toque moderno y exclusivo.</p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <button onclick="toggleView('panel')" class="px-10 py-4 bg-[#d4af37] text-black font-bold rounded-xl hover:scale-105 transition shadow-xl">RESERVAR AHORA</button>
-                    <a href="https://wa.me/34600000000" class="px-10 py-4 glass text-white font-bold rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2">
-                        <i class="fab fa-whatsapp text-green-400"></i> WHATSAPP
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- VISTA 2: PANEL DE GESTIÓN (HAIR OS) -->
-    <main id="view-panel" class="hidden min-h-screen flex transition-all duration-500 bg-[#050505]">
-        <!-- Sidebar -->
-        <aside class="w-64 glass border-r border-white/5 p-6 flex flex-col">
-            <div class="flex items-center gap-3 mb-10">
-                <div class="w-8 h-8 bg-[#d4af37] rounded-lg flex items-center justify-center text-black font-black">H</div>
-                <span class="font-bold text-xl tracking-tighter">HAIR<span class="text-[#d4af37]">OS</span></span>
-            </div>
-            
-            <nav class="flex-1 space-y-2">
-                <div class="p-3 active-tab rounded-xl flex items-center gap-3 cursor-pointer">
-                    <i class="fa-solid fa-calendar-days w-5"></i> <span class="font-semibold">Agenda</span>
-                </div>
-                <div class="p-3 text-gray-500 hover:text-white rounded-xl flex items-center gap-3 cursor-pointer transition">
-                    <i class="fa-solid fa-users w-5"></i> <span>Clientes</span>
-                </div>
-                <div class="p-3 text-gray-500 hover:text-white rounded-xl flex items-center gap-3 cursor-pointer transition">
-                    <i class="fa-solid fa-chart-simple w-5"></i> <span>Ingresos</span>
-                </div>
-            </nav>
-
-            <div class="mt-auto glass p-4 rounded-2xl">
-                <p class="text-xs text-gray-500 mb-1">Usuario</p>
-                <p class="text-sm font-bold">Admin Premium</p>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <section class="flex-1 p-8 overflow-y-auto">
-            <header class="flex justify-between items-end mb-10">
-                <div>
-                    <h2 class="text-3xl font-extrabold mb-1">Agenda de Hoy</h2>
-                    <p class="text-gray-500" id="current-date"></p>
-                </div>
-                <div class="flex gap-3">
-                    <div class="glass px-6 py-3 rounded-2xl text-center">
-                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Citas</p>
-                        <p class="text-xl font-bold" id="total-citas">0</p>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Lista de Citas -->
-            <div id="agenda-container" class="space-y-4">
-                <!-- Se inyecta por JS -->
-            </div>
-        </section>
-    </main>
-
-    <!-- CHATBOT FLOTANTE -->
-    <div class="fixed bottom-6 left-6 z-[100]">
-        <div id="chat-window" class="hidden w-80 h-[450px] glass rounded-3xl mb-4 overflow-hidden flex flex-col shadow-2xl border-white/10">
-            <div class="bg-[#d4af37] p-4 text-black font-bold flex justify-between">
-                <span>Asistente Virtual</span>
-                <button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="chat-msgs" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
-                <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none">¡Hola! Soy tu asistente. ¿Qué necesitas saber?</div>
-            </div>
-            <div class="p-4 grid grid-cols-2 gap-2">
-                <button onclick="botResponse('precios')" class="text-[10px] glass py-2 rounded-lg hover:bg-[#d4af37] hover:text-black transition">PRECIOS</button>
-                <button onclick="botResponse('horarios')" class="text-[10px] glass py-2 rounded-lg hover:bg-[#d4af37] hover:text-black transition">HORARIOS</button>
+    <!-- ============================================
+         SECCIÓN 2: LOGIN (Oculto)
+         ============================================ -->
+    <div id="seccion-login" class="hidden-view fixed inset-0 z-[100] bg-black flex items-center justify-center p-6">
+        <div class="glass p-10 rounded-[40px] w-full max-w-md text-center border-white/10">
+            <h2 class="text-2xl font-bold mb-8">Acceso Administración</h2>
+            <div class="space-y-4">
+                <input type="text" id="user" placeholder="Usuario" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-[#d4af37] outline-none">
+                <input type="password" id="pass" placeholder="Contraseña" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-[#d4af37] outline-none">
+                <button onclick="validarLogin()" class="w-full bg-[#d4af37] text-black font-bold py-4 rounded-2xl hover:scale-95 transition">ENTRAR</button>
+                <button onclick="cerrarTodo()" class="text-gray-500 text-sm">Volver a la web</button>
             </div>
         </div>
-        <button onclick="toggleChat()" class="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center text-black shadow-xl hover:scale-110 transition">
-            <i class="fa-solid fa-comment-dots text-xl"></i>
+    </div>
+
+    <!-- ============================================
+         SECCIÓN 3: PANEL DE GESTIÓN (Oculto)
+         ============================================ -->
+    <div id="panel-admin" class="hidden-view min-h-screen flex bg-[#020202]">
+        <!-- Sidebar -->
+        <aside class="w-64 border-r border-white/5 p-6 hidden md:flex flex-col">
+            <div class="text-xl font-black mb-12">HAIR<span class="text-[#d4af37]">OS</span></div>
+            <nav class="space-y-4 flex-1">
+                <div class="text-[#d4af37] bg-[#d4af37]/10 p-4 rounded-2xl flex items-center gap-3"><i class="fa-solid fa-calendar"></i> Agenda</div>
+                <div class="p-4 text-gray-500 hover:text-white transition cursor-pointer flex items-center gap-3"><i class="fa-solid fa-users"></i> Clientes</div>
+            </nav>
+            <button onclick="cerrarTodo()" class="text-red-500 text-left p-4 hover:bg-red-500/10 rounded-2xl transition"><i class="fa-solid fa-power-off mr-2"></i> Salir</button>
+        </aside>
+
+        <!-- Contenido -->
+        <main class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-bold">Agenda de Hoy</h2>
+                <div class="text-right">
+                    <p id="fecha-actual" class="text-gray-500 text-sm"></p>
+                </div>
+            </div>
+
+            <div id="lista-citas" class="space-y-4">
+                <!-- Se llena con JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- CHATBOT -->
+    <div class="fixed bottom-6 right-6 z-[200]">
+        <div id="chat-ui" class="hidden w-72 glass rounded-3xl mb-4 overflow-hidden border-white/10 flex flex-col h-80">
+            <div class="bg-[#d4af37] p-4 text-black font-bold text-sm">Asistente Luxe & Cut</div>
+            <div id="chat-msgs" class="flex-1 p-4 overflow-y-auto text-xs space-y-2">
+                <p class="bg-white/5 p-2 rounded-lg">¿Cómo podemos ayudarte hoy?</p>
+            </div>
+            <div class="p-2 border-t border-white/5 flex gap-1">
+                <button onclick="bot('P')" class="text-[9px] bg-white/5 p-2 rounded-lg flex-1">PRECIOS</button>
+                <button onclick="bot('U')" class="text-[9px] bg-white/5 p-2 rounded-lg flex-1">UBICACIÓN</button>
+            </div>
+        </div>
+        <button onclick="document.getElementById('chat-ui').classList.toggle('hidden')" class="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center text-black shadow-2xl hover:scale-110 transition">
+            <i class="fa-solid fa-comment"></i>
         </button>
     </div>
 
     <script>
-        // Datos funcionales
-        const appointments = [
-            { id: 1, time: "10:00", name: "Javier López", service: "Corte & Barba Ritual", status: "Confirmado", phone: "34600000000" },
-            { id: 2, time: "11:30", name: "Marcos Reverte", service: "Degradado Skin Fade", status: "Pendiente", phone: "34611111111" },
-            { id: 3, time: "13:00", name: "Andrés García", service: "Coloración Grey", status: "Pendiente", phone: "34622222222" }
-        ];
+        // Lógica de navegación
+        function abrirLogin() {
+            document.getElementById('web-publica').classList.add('hidden-view');
+            document.getElementById('seccion-login').classList.remove('hidden-view');
+        }
 
-        // Lógica de Vistas
-        function toggleView(view) {
-            const web = document.getElementById('view-web');
-            const panel = document.getElementById('view-panel');
-            if(view === 'web') {
-                web.classList.remove('hidden');
-                panel.classList.add('hidden');
-            } else {
-                web.classList.add('hidden');
-                panel.classList.remove('hidden');
+        function cerrarTodo() {
+            document.getElementById('web-publica').classList.remove('hidden-view');
+            document.getElementById('seccion-login').classList.add('hidden-view');
+            document.getElementById('panel-admin').classList.add('hidden-view');
+        }
+
+        function validarLogin() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            // Login simple para el MVP
+            if(u === 'admin' && p === 'admin') {
+                document.getElementById('seccion-login').classList.add('hidden-view');
+                document.getElementById('panel-admin').classList.remove('hidden-view');
                 renderAgenda();
+            } else {
+                alert("Credenciales incorrectas (Prueba: admin/admin)");
             }
         }
 
-        // Render de Agenda
-        function renderAgenda() {
-            const container = document.getElementById('agenda-container');
-            const totalCitas = document.getElementById('total-citas');
-            document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-            
-            container.innerHTML = '';
-            totalCitas.innerText = appointments.length;
+        // Datos y Panel
+        const citas = [
+            { id: 1, hora: "10:30", cliente: "Carlos Ruiz", servicio: "Corte Signature", tel: "34600112233" },
+            { id: 2, hora: "12:00", cliente: "Fran Murcia", servicio: "Afeitado Clásico", tel: "34611223344" }
+        ];
 
-            appointments.forEach(app => {
-                const statusColor = app.status === 'Confirmado' ? 'text-green-400 bg-green-400/10' : 'text-amber-400 bg-amber-400/10';
+        function renderAgenda() {
+            const container = document.getElementById('lista-citas');
+            document.getElementById('fecha-actual').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+            container.innerHTML = '';
+            citas.forEach(c => {
                 container.innerHTML += `
-                    <div class="glass p-5 rounded-3xl flex items-center justify-between group hover:border-[#d4af37]/30 transition">
+                    <div class="glass p-6 rounded-3xl flex items-center justify-between hover:border-[#d4af37]/40 transition group">
                         <div class="flex items-center gap-6">
-                            <span class="text-2xl font-black text-gray-600 group-hover:text-[#d4af37] transition">${app.time}</span>
+                            <span class="text-2xl font-black text-gray-700 group-hover:text-[#d4af37] transition">${c.hora}</span>
                             <div>
-                                <h4 class="font-bold text-lg">${app.name}</h4>
-                                <p class="text-xs text-gray-500 uppercase tracking-widest">${app.service}</p>
+                                <h4 class="font-bold">${c.cliente}</h4>
+                                <p class="text-xs text-gray-500 uppercase">${c.servicio}</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <span class="px-4 py-1 rounded-full text-[10px] font-bold ${statusColor}">${app.status.toUpperCase()}</span>
-                            <button onclick="sendWA('${app.phone}', '${app.name}', '${app.time}')" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-green-500/20 transition">
-                                <i class="fab fa-whatsapp text-green-500"></i>
-                            </button>
-                        </div>
+                        <button onclick="whatsapp('${c.tel}', '${c.cliente}', '${c.hora}')" class="w-12 h-12 rounded-2xl bg-green-500/10 flex items-center justify-center text-green-500 hover:bg-green-500 hover:text-white transition">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </button>
                     </div>
                 `;
             });
         }
 
-        // Lógica WhatsApp
-        function sendWA(phone, name, time) {
-            const msg = encodeURIComponent(`Hola ${name}, te recordamos tu cita hoy a las ${time} en Luxe & Cut. ¡Confírmanos si asistes!`);
-            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        function whatsapp(t, n, h) {
+            const m = encodeURIComponent(`Hola ${n}, recordatorio de tu cita a las ${h} en Luxe & Cut.`);
+            window.open(`https://wa.me/${t}?text=${m}`, '_blank');
         }
 
-        // Chatbot simple
-        function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
-        function botResponse(type) {
-            const msgs = document.getElementById('chat-msgs');
-            const responses = {
-                precios: "Corte: 20€ | Barba: 12€ | Pack VIP: 30€.",
-                horarios: "Lunes a Sábado: 10:00 - 21:00."
-            };
-            msgs.innerHTML += `<div class="bg-[#d4af37]/20 p-3 rounded-2xl rounded-tr-none ml-auto text-xs w-fit">Ver ${type}</div>`;
-            setTimeout(() => {
-                msgs.innerHTML += `<div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-auto w-fit">${responses[type]}</div>`;
-                msgs.scrollTop = msgs.scrollHeight;
-            }, 400);
+        function bot(t) {
+            const c = document.getElementById('chat-msgs');
+            const r = t === 'P' ? "Corte: 25€, Afeitado: 20€." : "Calle Gran Vía, 12, Murcia.";
+            c.innerHTML += `<p class="bg-[#d4af37]/20 p-2 rounded-lg text-right">Solicitud enviada</p>`;
+            setTimeout(() => { c.innerHTML += `<p class="bg-white/10 p-2 rounded-lg">${r}</p>`; }, 400);
         }
-
-        // Iniciar
-        renderAgenda();
     </script>
 </body>
 </html>
