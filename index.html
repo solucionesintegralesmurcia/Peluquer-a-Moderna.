@@ -3,230 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE STUDIO | Sistema Integral de Gestión</title>
+    <title>THE STUDIO | CRM & Grooming Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        :root { --primary: #c5a059; --dark: #0f172a; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; scroll-behavior: smooth; }
-        .glass-blur { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
-        .panel-hidden { display: none; position: fixed; inset: 0; z-index: 1000; background: #f1f5f9; overflow-y: auto; }
-        .btn-action { transition: all 0.2s; }
-        .btn-action:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .chat-bubble { animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        :root { --primary: #c5a059; --dark: #0a0a0a; --soft-bg: #fdfdfd; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--soft-bg); color: var(--dark); overflow-x: hidden; }
+        
+        .panel-hidden { display: none; position: fixed; inset: 0; z-index: 1000; background: #f4f6f8; overflow-y: auto; }
+        .card-premium { background: white; border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 10px 40px -15px rgba(0,0,0,0.05); border-radius: 2.5rem; transition: all 0.3s ease; }
+        .card-premium:hover { transform: translateY(-5px); box-shadow: 0 20px 50px -10px rgba(0,0,0,0.1); }
+        
+        .hero-luxury { background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1512690196252-7396ef5ba872?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; }
+        
+        .btn-gold { background: var(--primary); color: white; transition: all 0.3s; position: relative; overflow: hidden; }
+        .btn-gold:hover { background: #b08d4b; transform: scale(1.02); }
+
+        .client-note { border-left: 3px solid var(--primary); background: #fcf9f2; padding: 10px; border-radius: 0 12px 12px 0; font-style: italic; font-size: 0.75rem; }
     </style>
 </head>
 <body>
 
     <div id="public-site">
-        <nav class="fixed w-full z-50 glass-blur border-b">
+        <nav class="fixed w-full z-50 bg-white/70 backdrop-blur-xl border-b border-gray-100">
             <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-                <div id="secret-trigger" class="text-2xl font-black italic cursor-pointer select-none">
+                <div id="secret-trigger" class="text-2xl font-black italic cursor-pointer select-none tracking-tighter">
                     THE<span class="text-[--primary] font-light">STUDIO</span>
                 </div>
-                <div class="flex gap-4">
-                    <a href="#servicios" class="text-xs font-bold uppercase tracking-widest pt-2">Servicios</a>
-                    <button class="bg-black text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-tighter">Cita Online</button>
+                <div class="flex items-center gap-6">
+                    <span class="hidden md:block text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Murcia Elite Salon</span>
+                    <button class="bg-black text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[--primary] transition">Cita WhatsApp</button>
                 </div>
             </div>
         </nav>
 
-        <section class="h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1593702295094-ada74ca4a59d?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center">
-            <div class="absolute inset-0 bg-black/60"></div>
-            <div class="relative text-center text-white px-6">
-                <h1 class="text-6xl md:text-8xl font-black mb-6 italic leading-tight">Mastering<br><span class="text-[--primary]">The Look.</span></h1>
-                <p class="text-gray-300 max-w-lg mx-auto mb-8 font-light">Barbería premium y estilismo avanzado. Reserva tu espacio y redefine tu estilo.</p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <button class="bg-[--primary] px-10 py-5 rounded-full font-black text-sm uppercase tracking-widest">Ver Precios</button>
-                    <button class="bg-white/10 backdrop-blur-md px-10 py-5 rounded-full font-black text-sm uppercase border border-white/20 tracking-widest">Ubicación</button>
+        <section class="h-screen hero-luxury flex items-center justify-center text-center px-6">
+            <div class="max-w-4xl">
+                <h1 class="text-6xl md:text-9xl font-black text-white mb-6 italic tracking-tighter leading-none">The Luxury <br><span class="text-[--primary]">Standard.</span></h1>
+                <p class="text-gray-400 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto">Más que un corte, una identidad. Sistema de estilismo avanzado para el hombre moderno.</p>
+                <div class="flex flex-col md:flex-row gap-5 justify-center">
+                    <button class="btn-gold px-12 py-5 rounded-full font-black text-xs uppercase tracking-[0.2em]">Ver Catálogo</button>
+                    <button class="bg-white/5 backdrop-blur-md border border-white/10 text-white px-12 py-5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition">Ubicación</button>
                 </div>
             </div>
         </section>
 
-        <div class="fixed bottom-6 right-6 z-[100]">
-            <div id="chat-window" class="hidden mb-4 w-80 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden chat-bubble">
-                <div class="bg-black p-5 text-white flex justify-between items-center">
-                    <span class="font-bold">Asistente Virtual 🤖</span>
-                    <button onclick="toggleChat()" class="opacity-50 hover:opacity-100"><i class="fas fa-times"></i></button>
+        <div class="fixed bottom-10 right-10 z-[100]">
+            <button onclick="toggleChat()" class="w-16 h-16 bg-black text-white rounded-full shadow-2xl flex items-center justify-center text-xl hover:rotate-12 transition transform">
+                <i class="fas fa-comment-dots"></i>
+            </button>
+            <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden">
+                <div class="bg-black p-6 text-white font-bold text-sm flex justify-between">
+                    <span>Assistant Studio</span>
+                    <i class="fas fa-robot text-[--primary]"></i>
                 </div>
-                <div id="chat-content" class="p-5 h-64 overflow-y-auto text-sm space-y-4 bg-gray-50">
-                    <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100">¡Hola! Soy el asistente de The Studio. ¿Qué necesitas?</div>
-                </div>
-                <div class="p-3 bg-white border-t flex flex-wrap gap-2">
-                    <button onclick="chatAnswer('precios')" class="text-[10px] bg-gray-100 px-3 py-2 rounded-full font-bold hover:bg-[--primary] hover:text-white transition">💰 Ver Precios</button>
-                    <button onclick="chatAnswer('cita')" class="text-[10px] bg-gray-100 px-3 py-2 rounded-full font-bold hover:bg-[--primary] hover:text-white transition">📅 Pedir Cita</button>
-                    <button onclick="chatAnswer('donde')" class="text-[10px] bg-gray-100 px-3 py-2 rounded-full font-bold hover:bg-[--primary] hover:text-white transition">📍 ¿Dónde estáis?</button>
+                <div class="p-6 space-y-4 text-xs font-medium text-gray-600">
+                    <p class="bg-gray-100 p-3 rounded-2xl">Hola, ¿quieres ver nuestros precios o reservar una cita hoy?</p>
+                    <button onclick="alert('Corte: 25€\nBarba: 15€\nCompleto: 35€')" class="w-full text-left p-3 bg-gray-50 rounded-xl hover:bg-[--primary] hover:text-white transition">💰 Tarifas</button>
+                    <button onclick="window.location.href='https://wa.me/34600000000'" class="w-full text-left p-3 bg-gray-50 rounded-xl hover:bg-[--primary] hover:text-white transition">📅 Reservar ahora</button>
                 </div>
             </div>
-            <button onclick="toggleChat()" class="w-16 h-16 bg-black text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition">
-                <i class="fas fa-comment-alt"></i>
-            </button>
         </div>
     </div>
 
     <div id="admin-panel" class="panel-hidden">
-        <aside class="fixed h-screen w-64 bg-black text-white p-8 hidden md:block">
-            <h2 class="text-xl font-black italic mb-10 tracking-tighter">THE<span class="text-[--primary]">DASH</span></h2>
-            <nav class="space-y-6 text-sm font-bold text-gray-400">
-                <div class="text-[--primary] cursor-pointer flex items-center gap-3"><i class="fas fa-calendar-day"></i> Agenda Hoy</div>
-                <div class="hover:text-white cursor-pointer flex items-center gap-3"><i class="fas fa-users"></i> Clientes</div>
-                <div class="hover:text-white cursor-pointer flex items-center gap-3"><i class="fas fa-file-invoice-dollar"></i> Presupuestos</div>
-                <div class="hover:text-white cursor-pointer flex items-center gap-3"><i class="fas fa-cog"></i> Ajustes</div>
-            </nav>
-            <button onclick="closeAdmin()" class="absolute bottom-8 left-8 text-xs text-red-500 font-black">SALIR DEL PANEL</button>
-        </aside>
-
-        <main class="md:ml-64 p-8 md:p-12">
-            <header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
-                <div>
-                    <h2 class="text-3xl font-black text-slate-800">CENTRO DE CONTROL</h2>
-                    <p class="text-slate-400 font-medium italic text-sm tracking-wide">Gestión Integral de Negocio</p>
+        <nav class="bg-white border-b px-8 py-4 sticky top-0 z-[1100] flex justify-between items-center shadow-sm">
+            <div class="flex items-center gap-6">
+                <button onclick="closeAdmin()" class="bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-200 transition">
+                    <i class="fas fa-arrow-left text-gray-500"></i>
+                </button>
+                <h2 class="font-black text-xl tracking-tighter uppercase">Operations <span class="text-[--primary]">Center</span></h2>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden md:block">
+                    <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Estado del Salón</p>
+                    <p class="text-xs font-bold text-green-500 uppercase">En Línea</p>
                 </div>
-                <div class="flex gap-4 w-full md:w-auto">
-                    <div class="flex-1 bg-white p-5 rounded-[2rem] shadow-sm text-center border-b-4 border-[--primary]">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase block mb-1 tracking-widest">Caja Hoy</span>
-                        <span id="admin-revenue" class="text-2xl font-black text-slate-800 tracking-tighter">0€</span>
-                    </div>
-                    <button onclick="openModal()" class="flex-1 bg-black text-white px-8 py-5 rounded-[2rem] font-bold text-xs uppercase tracking-widest btn-action hover:bg-[--primary]">Nueva Cita</button>
-                </div>
-            </header>
+                <div class="w-10 h-10 bg-black rounded-full"></div>
+            </div>
+        </nav>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
-                    <h3 class="font-black text-sm uppercase tracking-widest mb-8 text-slate-400 flex items-center gap-2">
-                        <i class="fas fa-clock text-[--primary]"></i> Citas del Día
-                    </h3>
-                    <div id="admin-appointments" class="space-y-4">
+        <main class="max-w-7xl mx-auto p-6 md:p-10">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-8 rounded-[2rem] shadow-sm">
+                            <p class="text-[10px] font-black text-gray-400 uppercase mb-2">Ingresos Hoy</p>
+                            <p id="total-revenue" class="text-3xl font-black text-gray-800">0€</p>
                         </div>
+                        <div class="bg-white p-8 rounded-[2rem] shadow-sm border-b-4 border-[--primary]">
+                            <p class="text-[10px] font-black text-gray-400 uppercase mb-2">Citas Activas</p>
+                            <p id="total-citas" class="text-3xl font-black text-gray-800">0</p>
+                        </div>
+                        <button onclick="openModal()" class="col-span-2 md:col-span-1 bg-black text-white p-8 rounded-[2rem] font-black text-xs uppercase tracking-widest hover:bg-[--primary] transition flex flex-col items-center justify-center gap-2">
+                            <i class="fas fa-plus-circle text-xl"></i>
+                            Nueva Reserva
+                        </button>
+                    </div>
+
+                    <div class="card-premium p-8">
+                        <h3 class="font-black text-sm uppercase tracking-widest mb-8 flex items-center gap-3">
+                            <i class="far fa-calendar-check text-[--primary]"></i> Planning de hoy
+                        </h3>
+                        <div id="agenda-display" class="space-y-4">
+                            </div>
+                    </div>
                 </div>
 
                 <div class="space-y-8">
-                    <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white">
-                        <h3 class="font-black text-lg mb-6 flex items-center gap-2">
-                            <i class="fas fa-paper-plane text-[--primary]"></i> Generar Presupuesto
+                    <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white shadow-2xl">
+                        <h3 class="font-black text-lg mb-6 flex items-center gap-3 italic">
+                            <i class="fas fa-file-invoice-dollar text-[--primary]"></i> Quick Quote
                         </h3>
                         <div class="space-y-4">
-                            <input type="text" id="pres-cliente" placeholder="Nombre Cliente" class="w-full bg-white/10 p-4 rounded-2xl border-none outline-none text-sm">
-                            <input type="number" id="pres-total" placeholder="Importe Total €" class="w-full bg-white/10 p-4 rounded-2xl border-none outline-none text-sm">
-                            <button onclick="sendBudget()" class="w-full bg-[--primary] text-white p-4 rounded-2xl font-black text-xs uppercase tracking-widest btn-action">Enviar por WhatsApp</button>
+                            <input type="text" id="pres-name" placeholder="Cliente" class="w-full bg-white/10 p-4 rounded-2xl border-none outline-none text-sm text-white">
+                            <input type="number" id="pres-amt" placeholder="Importe €" class="w-full bg-white/10 p-4 rounded-2xl border-none outline-none text-sm text-white">
+                            <button onclick="sendBudget()" class="w-full btn-gold p-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Enviar Presupuesto WA</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-gray-100">
+                        <h3 class="font-black text-xs uppercase tracking-widest text-gray-400 mb-6">Acciones Globales</h3>
+                        <div class="grid gap-3">
+                            <button class="w-full text-left p-4 bg-gray-50 rounded-2xl text-[10px] font-black uppercase tracking-tight hover:bg-gray-100 transition flex items-center gap-3">
+                                <i class="fab fa-whatsapp text-green-500 text-lg"></i> Recordar Citas Mañana
+                            </button>
+                            <button class="w-full text-left p-4 bg-gray-50 rounded-2xl text-[10px] font-black uppercase tracking-tight hover:bg-gray-100 transition flex items-center gap-3">
+                                <i class="fas fa-star text-amber-500 text-lg"></i> Pedir Reseña Google
+                            </button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </main>
     </div>
 
-    <div id="modal-new" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[2000] hidden flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-sm rounded-[3rem] p-10">
-            <h3 class="text-2xl font-black mb-8 italic tracking-tighter">Registrar Servicio</h3>
+    <div id="modal-app" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[2000] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-[3rem] p-10">
+            <h3 class="text-3xl font-black mb-8 italic tracking-tighter leading-none">Agendar <br><span class="text-[--primary]">Nueva Cita</span></h3>
             <div class="space-y-4">
-                <input type="text" id="in-name" placeholder="Nombre" class="w-full p-4 bg-slate-50 rounded-2xl outline-none">
-                <select id="in-service" class="w-full p-4 bg-slate-50 rounded-2xl outline-none text-sm font-bold">
-                    <option value="20">Corte Caballero (20€)</option>
-                    <option value="35">Corte + Barba (35€)</option>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="app-name" placeholder="Cliente" class="p-4 bg-gray-50 rounded-2xl outline-none font-bold text-sm">
+                    <input type="time" id="app-time" class="p-4 bg-gray-50 rounded-2xl outline-none font-bold text-sm">
+                </div>
+                <select id="app-service" class="w-full p-4 bg-gray-50 rounded-2xl outline-none font-bold text-sm">
+                    <option value="25">Corte Premium (25€)</option>
                     <option value="15">Perfilado Barba (15€)</option>
-                    <option value="50">Servicio VIP Full (50€)</option>
+                    <option value="35">Corte + Barba (35€)</option>
+                    <option value="50">Cambio Look Total (50€)</option>
                 </select>
-                <input type="time" id="in-time" class="w-full p-4 bg-slate-50 rounded-2xl outline-none">
+                <textarea id="app-note" placeholder="Nota técnica (Ej: Degradado al 1, cera mate...)" class="w-full p-4 bg-gray-50 rounded-2xl outline-none text-sm h-24 resize-none"></textarea>
+                
                 <div class="flex gap-4 pt-6">
-                    <button onclick="closeModal()" class="flex-1 font-bold text-slate-400">Cancelar</button>
-                    <button onclick="saveAppointment()" class="flex-1 bg-black text-white p-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest">Agendar</button>
+                    <button onclick="closeModal()" class="flex-1 font-bold text-gray-400">Cancelar</button>
+                    <button onclick="saveApp()" class="flex-1 bg-black text-white p-4 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-[--primary] transition">Guardar Cita</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // --- LÓGICA DE ACCESO SECRETO ---
+        // Lógica de acceso: 5 clics en el logo
         let clicks = 0;
         document.getElementById('secret-trigger').onclick = () => {
             clicks++;
             if(clicks === 5) {
                 document.getElementById('admin-panel').style.display = 'block';
                 clicks = 0;
-                renderAdmin();
+                render();
             }
             setTimeout(() => clicks = 0, 2000);
         };
 
         function closeAdmin() { document.getElementById('admin-panel').style.display = 'none'; }
-
-        // --- CHATBOT ---
         function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
-        function chatAnswer(type) {
-            const content = document.getElementById('chat-content');
-            let resp = "";
-            if(type === 'precios') resp = "💰 Cortes desde 20€. Barba desde 15€. Pack completo 35€.";
-            if(type === 'cita') resp = "📅 Reserva al momento escribiendo a nuestro WhatsApp: 600 000 000.";
-            if(type === 'donde') resp = "📍 Estamos en el centro de Murcia, Calle Gran Vía 12.";
-            
-            content.innerHTML += `<div class="bg-slate-800 text-white p-3 rounded-2xl shadow-sm text-xs ml-8">${resp}</div>`;
-            content.scrollTop = content.scrollHeight;
-        }
 
-        // --- GESTIÓN DE CITAS ---
-        let db = JSON.parse(localStorage.getItem('studio_db')) || [];
+        // Gestión de Datos
+        let appointments = JSON.parse(localStorage.getItem('studio_pro_db')) || [];
 
-        function renderAdmin() {
-            const list = document.getElementById('admin-appointments');
-            const rev = document.getElementById('admin-revenue');
+        function render() {
+            const list = document.getElementById('agenda-display');
+            const rev = document.getElementById('total-revenue');
+            const count = document.getElementById('total-citas');
             list.innerHTML = "";
-            let total = 0;
+            let totalMoney = 0;
 
-            db.sort((a,b) => a.time.localeCompare(b.time)).forEach((item, index) => {
-                total += parseInt(item.price);
+            appointments.sort((a,b) => a.time.localeCompare(b.time)).forEach((a, index) => {
+                totalMoney += parseInt(a.price);
                 list.innerHTML += `
-                    <div class="flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-white hover:shadow-md transition group">
-                        <div class="flex items-center gap-5">
-                            <span class="text-xs font-black text-slate-400 w-10">${item.time}</span>
+                    <div class="group relative bg-white border border-gray-100 p-6 rounded-[1.8rem] flex flex-col md:flex-row md:items-center justify-between hover:shadow-xl transition-all">
+                        <div class="flex items-center gap-6">
+                            <span class="text-lg font-black text-gray-300 w-16">${a.time}</span>
                             <div>
-                                <p class="font-black text-slate-800 text-sm">${item.name}</p>
-                                <p class="text-[9px] font-bold text-[--primary] uppercase tracking-widest">${item.service}</p>
+                                <h4 class="font-black text-gray-800 uppercase text-sm tracking-tight">${a.name}</h4>
+                                <p class="text-[10px] font-black text-[--primary] uppercase tracking-widest mb-2">${a.service}</p>
+                                ${a.note ? `<div class="client-note">"${a.note}"</div>` : ''}
                             </div>
                         </div>
-                        <div class="flex gap-2">
-                            <button onclick="deleteItem(${index})" class="w-8 h-8 flex items-center justify-center text-slate-300 hover:text-red-500 transition"><i class="fas fa-trash-alt"></i></button>
-                            <a href="https://wa.me/34600000000?text=Hola ${item.name}, te recordamos tu cita a las ${item.time}. ¡Un saludo!" class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-xs shadow-lg shadow-green-100"><i class="fab fa-whatsapp"></i></a>
+                        <div class="flex gap-3 mt-4 md:mt-0">
+                            <button onclick="deleteApp(${index})" class="w-10 h-10 rounded-full bg-gray-50 text-gray-300 hover:text-red-500 transition flex items-center justify-center">
+                                <i class="fas fa-trash-alt text-xs"></i>
+                            </button>
+                            <a href="https://wa.me/34600000000?text=Hola ${a.name}, recordamos tu cita a las ${a.time} en THE STUDIO." class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-green-100 hover:scale-110 transition">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
                         </div>
                     </div>
                 `;
             });
-            rev.innerText = total + "€";
-            localStorage.setItem('studio_db', JSON.stringify(db));
+
+            rev.innerText = totalMoney + "€";
+            count.innerText = appointments.length;
+            localStorage.setItem('studio_pro_db', JSON.stringify(appointments));
         }
 
-        function openModal() { document.getElementById('modal-new').classList.remove('hidden'); }
-        function closeModal() { document.getElementById('modal-new').classList.add('hidden'); }
+        function openModal() { document.getElementById('modal-app').classList.remove('hidden'); }
+        function closeModal() { document.getElementById('modal-app').classList.add('hidden'); }
 
-        function saveAppointment() {
-            const name = document.getElementById('in-name').value;
-            const price = document.getElementById('in-service').value;
-            const service = document.getElementById('in-service').options[document.getElementById('in-service').selectedIndex].text.split('(')[0];
-            const time = document.getElementById('in-time').value;
+        function saveApp() {
+            const name = document.getElementById('app-name').value;
+            const time = document.getElementById('app-time').value;
+            const price = document.getElementById('app-service').value;
+            const service = document.getElementById('app-service').options[document.getElementById('app-service').selectedIndex].text.split('(')[0];
+            const note = document.getElementById('app-note').value;
 
             if(name && time) {
-                db.push({ name, price, service, time });
-                renderAdmin();
+                appointments.push({ name, time, price, service, note });
+                render();
                 closeModal();
-                document.getElementById('in-name').value = "";
+                // Limpiar campos
+                document.getElementById('app-name').value = "";
+                document.getElementById('app-note').value = "";
             }
         }
 
-        function deleteItem(i) { db.splice(i, 1); renderAdmin(); }
-
-        // --- PRESUPUESTOS ---
-        function sendBudget() {
-            const cliente = document.getElementById('pres-cliente').value;
-            const total = document.getElementById('pres-total').value;
-            if(cliente && total) {
-                const msg = `Hola ${cliente}, este es el presupuesto detallado de THE STUDIO para tu cambio de imagen completo. Total: ${total}€. ¿Te reservamos hueco?`;
-                window.open(`https://wa.me/34600000000?text=${encodeURIComponent(msg)}`);
-            } else { alert("Rellena cliente e importe"); }
+        function deleteApp(i) {
+            if(confirm("¿Eliminar esta cita?")) {
+                appointments.splice(i, 1);
+                render();
+            }
         }
 
-        renderAdmin();
+        function sendBudget() {
+            const n = document.getElementById('pres-name').value;
+            const a = document.getElementById('pres-amt').value;
+            if(n && a) {
+                const text = `Hola ${n}, el presupuesto para tu servicio premium en THE STUDIO es de ${a}€. ¿Confirmamos tu cita?`;
+                window.open(`https://wa.me/34600000000?text=${encodeURIComponent(text)}`);
+            }
+        }
+
+        render();
     </script>
 </body>
 </html>
