@@ -3,165 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HairOS - Sistema Premium para Peluquerías</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>HairOS | Sistema de Gestión Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #d4af37;
-            --dark: #121212;
-            --dark-soft: #1e1e1e;
-            --light: #fbfbfb;
-            --success: #27ae60;
-            --danger: #e74c3c;
-            --warning: #f1c40f;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--light); overflow-x: hidden; }
-
-        /* --- NAVEGACIÓN DE VISTAS --- */
-        .view { display: none; min-height: 100vh; }
-        .view.active { display: block; }
-        #admin-panel.active { display: grid; grid-template-columns: 260px 1fr; }
-
-        /* --- ESTILOS COMUNES --- */
-        .glass-card { background: white; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 20px; transition: 0.3s; }
-        .btn { padding: 10px 20px; border-radius: 8px; cursor: pointer; border: none; font-weight: 600; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-dark { background: var(--dark); color: white; }
-        .btn-whatsapp { background: #25d366; color: white; }
-
-        /* --- WEB PÚBLICA --- */
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1920'); background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 50px 10%; }
-
-        /* --- PANEL INTERNO --- */
-        .sidebar { background: var(--dark); color: white; padding: 30px 20px; }
-        .sidebar h2 { color: var(--primary); margin-bottom: 40px; font-size: 1.2rem; }
-        .sidebar-nav { list-style: none; }
-        .sidebar-nav li { padding: 12px; cursor: pointer; border-radius: 8px; margin-bottom: 5px; opacity: 0.7; transition: 0.3s; }
-        .sidebar-nav li:hover, .sidebar-nav li.active { background: var(--dark-soft); opacity: 1; color: var(--primary); }
-
-        .main-content { padding: 40px; background: #f4f6f8; }
-        .agenda-list { margin-top: 25px; }
-        .appointment-card { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-left: 6px solid var(--primary); }
-        
-        /* Estados de cita dinámicos */
-        .status-pill { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
-        .status-pendiente { background: #eee; color: #666; }
-        .status-confirmado { background: #d4edda; color: #155724; }
-        .status-vino { background: #cce5ff; color: #004085; }
-        .status-cancelado { background: #f8d7da; color: #721c24; }
-
-        /* --- CHATBOT --- */
-        #chatbot-ui { position: fixed; bottom: 80px; right: 20px; width: 320px; height: 400px; display: none; flex-direction: column; z-index: 1000; }
-        .chat-body { flex-grow: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
-        .msg { padding: 10px; border-radius: 10px; font-size: 0.85rem; max-width: 80%; }
-        .msg-bot { background: #f0f0f0; align-self: flex-start; }
-        .msg-user { background: var(--primary); color: white; align-self: flex-end; }
-
-        /* BOTÓN FLOTANTE */
-        .fab { position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1001; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0a0a0a; color: white; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .active-tab { border-left: 4px solid #d4af37; background: rgba(212, 175, 55, 0.1); color: #d4af37; }
+        .gradient-text { background: linear-gradient(90deg, #fff, #d4af37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <!-- BOTONES DE NAVEGACIÓN (DEMO) -->
-    <div style="position: fixed; top: 10px; right: 10px; z-index: 9999;">
-        <button class="btn btn-dark" onclick="showView('public-web')">Web</button>
-        <button class="btn btn-primary" onclick="showView('admin-panel')">Panel Gestión</button>
+    <!-- NAVEGACIÓN DE VISTAS (Solo para ti) -->
+    <div class="fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleView('web')" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold transition">WEB PÚBLICA</button>
+        <button onclick="toggleView('panel')" class="px-4 py-2 bg-[#d4af37] text-black rounded-full text-xs font-bold transition shadow-lg shadow-[#d4af37]/20">PANEL CONTROL</button>
     </div>
 
-    <!-- 1. VISTA WEB PÚBLICA -->
-    <div id="public-web" class="view active">
-        <section class="hero">
-            <div>
-                <h1 style="font-size: 3rem;">HAIR & STYLE</h1>
-                <p style="margin-bottom: 20px;">Barbería Premium en Murcia</p>
-                <button class="btn btn-primary" onclick="showView('admin-panel')">RESERVAR CITA</button>
+    <!-- VISTA 1: WEB PÚBLICA PREMIUM -->
+    <main id="view-web" class="transition-all duration-500">
+        <!-- Hero -->
+        <section class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070" class="w-full h-full object-cover opacity-40 scale-105">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-[#0a0a0a]"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-6">
+                <span class="text-[#d4af37] font-bold tracking-[0.3em] text-sm mb-4 block">ESTABLISHED 2024</span>
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 gradient-text">LUXE & CUT</h1>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">Redefiniendo el arte de la barbería clásica con un toque moderno y exclusivo.</p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <button onclick="toggleView('panel')" class="px-10 py-4 bg-[#d4af37] text-black font-bold rounded-xl hover:scale-105 transition shadow-xl">RESERVAR AHORA</button>
+                    <a href="https://wa.me/34600000000" class="px-10 py-4 glass text-white font-bold rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-green-400"></i> WHATSAPP
+                    </a>
+                </div>
             </div>
         </section>
-        <div class="services-grid">
-            <div class="glass-card"><i class="fas fa-cut"></i> <h3>Corte Caballero</h3><p>20€</p></div>
-            <div class="glass-card"><i class="fas fa-razor"></i> <h3>Arreglo Barba</h3><p>12€</p></div>
-            <div class="glass-card"><i class="fas fa-magic"></i> <h3>Tratamiento</h3><p>30€</p></div>
-        </div>
-    </div>
+    </main>
 
-    <!-- 2. VISTA PANEL INTERNO -->
-    <div id="admin-panel" class="view">
-        <aside class="sidebar">
-            <h2>HAIR OS</h2>
-            <ul class="sidebar-nav">
-                <li class="active"><i class="fas fa-calendar-day"></i> Agenda</li>
-                <li><i class="fas fa-users"></i> Clientes</li>
-                <li><i class="fas fa-chart-pie"></i> Finanzas</li>
-            </ul>
+    <!-- VISTA 2: PANEL DE GESTIÓN (HAIR OS) -->
+    <main id="view-panel" class="hidden min-h-screen flex transition-all duration-500 bg-[#050505]">
+        <!-- Sidebar -->
+        <aside class="w-64 glass border-r border-white/5 p-6 flex flex-col">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-8 h-8 bg-[#d4af37] rounded-lg flex items-center justify-center text-black font-black">H</div>
+                <span class="font-bold text-xl tracking-tighter">HAIR<span class="text-[#d4af37]">OS</span></span>
+            </div>
+            
+            <nav class="flex-1 space-y-2">
+                <div class="p-3 active-tab rounded-xl flex items-center gap-3 cursor-pointer">
+                    <i class="fa-solid fa-calendar-days w-5"></i> <span class="font-semibold">Agenda</span>
+                </div>
+                <div class="p-3 text-gray-500 hover:text-white rounded-xl flex items-center gap-3 cursor-pointer transition">
+                    <i class="fa-solid fa-users w-5"></i> <span>Clientes</span>
+                </div>
+                <div class="p-3 text-gray-500 hover:text-white rounded-xl flex items-center gap-3 cursor-pointer transition">
+                    <i class="fa-solid fa-chart-simple w-5"></i> <span>Ingresos</span>
+                </div>
+            </nav>
+
+            <div class="mt-auto glass p-4 rounded-2xl">
+                <p class="text-xs text-gray-500 mb-1">Usuario</p>
+                <p class="text-sm font-bold">Admin Premium</p>
+            </div>
         </aside>
-        <main class="main-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                <h1>Agenda Hoy</h1>
-                <button class="btn btn-primary" onclick="addMockAppointment()">+ Nueva Cita</button>
-            </div>
 
-            <div id="agenda-list" class="agenda-list">
-                <!-- Las citas se cargan aquí dinámicamente -->
+        <!-- Main Content -->
+        <section class="flex-1 p-8 overflow-y-auto">
+            <header class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-1">Agenda de Hoy</h2>
+                    <p class="text-gray-500" id="current-date"></p>
+                </div>
+                <div class="flex gap-3">
+                    <div class="glass px-6 py-3 rounded-2xl text-center">
+                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Citas</p>
+                        <p class="text-xl font-bold" id="total-citas">0</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Lista de Citas -->
+            <div id="agenda-container" class="space-y-4">
+                <!-- Se inyecta por JS -->
             </div>
-        </main>
+        </section>
+    </main>
+
+    <!-- CHATBOT FLOTANTE -->
+    <div class="fixed bottom-6 left-6 z-[100]">
+        <div id="chat-window" class="hidden w-80 h-[450px] glass rounded-3xl mb-4 overflow-hidden flex flex-col shadow-2xl border-white/10">
+            <div class="bg-[#d4af37] p-4 text-black font-bold flex justify-between">
+                <span>Asistente Virtual</span>
+                <button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="chat-msgs" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
+                <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none">¡Hola! Soy tu asistente. ¿Qué necesitas saber?</div>
+            </div>
+            <div class="p-4 grid grid-cols-2 gap-2">
+                <button onclick="botResponse('precios')" class="text-[10px] glass py-2 rounded-lg hover:bg-[#d4af37] hover:text-black transition">PRECIOS</button>
+                <button onclick="botResponse('horarios')" class="text-[10px] glass py-2 rounded-lg hover:bg-[#d4af37] hover:text-black transition">HORARIOS</button>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center text-black shadow-xl hover:scale-110 transition">
+            <i class="fa-solid fa-comment-dots text-xl"></i>
+        </button>
     </div>
 
-    <!-- 3. CHATBOT ESTRUCTURA -->
-    <div id="chatbot-ui" class="glass-card">
-        <div style="background: var(--dark); color: white; padding: 15px; border-radius: 10px 10px 0 0;">Asistente HairOS</div>
-        <div class="chat-body" id="chat-content">
-            <div class="msg msg-bot">Hola, ¿en qué puedo ayudarte?</div>
-        </div>
-        <div style="padding: 10px; border-top: 1px solid #eee;">
-            <button class="btn" style="font-size: 0.7rem; width: 100%; margin-bottom: 5px;" onclick="askBot('Horarios')">Ver Horarios</button>
-            <button class="btn" style="font-size: 0.7rem; width: 100%;" onclick="askBot('Precios')">Ver Precios</button>
-        </div>
-    </div>
-    <div class="fab btn-dark" onclick="toggleChat()"><i class="fas fa-comment"></i></div>
-
-    <!-- LÓGICA FUNCIONAL -->
     <script>
-        // Datos de ejemplo para que veas funcionalidad real
-        let citas = [
-            { id: 1, hora: '10:00', cliente: 'Marcos Ruiz', servicio: 'Corte + Barba', estado: 'pendiente', tel: '34600000000' },
-            { id: 2, hora: '11:30', cliente: 'Laura Soler', servicio: 'Tinte Premium', estado: 'confirmado', tel: '34600000000' }
+        // Datos funcionales
+        const appointments = [
+            { id: 1, time: "10:00", name: "Javier López", service: "Corte & Barba Ritual", status: "Confirmado", phone: "34600000000" },
+            { id: 2, time: "11:30", name: "Marcos Reverte", service: "Degradado Skin Fade", status: "Pendiente", phone: "34611111111" },
+            { id: 3, time: "13:00", name: "Andrés García", service: "Coloración Grey", status: "Pendiente", phone: "34622222222" }
         ];
 
-        // Función para cambiar de vista (Web vs Panel)
-        function showView(viewId) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
-            if(viewId === 'admin-panel') renderAgenda();
+        // Lógica de Vistas
+        function toggleView(view) {
+            const web = document.getElementById('view-web');
+            const panel = document.getElementById('view-panel');
+            if(view === 'web') {
+                web.classList.remove('hidden');
+                panel.classList.add('hidden');
+            } else {
+                web.classList.add('hidden');
+                panel.classList.remove('hidden');
+                renderAgenda();
+            }
         }
 
-        // Renderizar la agenda visual
+        // Render de Agenda
         function renderAgenda() {
-            const list = document.getElementById('agenda-list');
-            list.innerHTML = '';
-            citas.sort((a,b) => a.hora.localeCompare(b.hora)).forEach(cita => {
-                list.innerHTML += `
-                    <div class="appointment-card glass-card">
-                        <div style="display:flex; align-items:center; gap:20px;">
-                            <b style="font-size:1.1rem; width:60px;">${cita.hora}</b>
+            const container = document.getElementById('agenda-container');
+            const totalCitas = document.getElementById('total-citas');
+            document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+            
+            container.innerHTML = '';
+            totalCitas.innerText = appointments.length;
+
+            appointments.forEach(app => {
+                const statusColor = app.status === 'Confirmado' ? 'text-green-400 bg-green-400/10' : 'text-amber-400 bg-amber-400/10';
+                container.innerHTML += `
+                    <div class="glass p-5 rounded-3xl flex items-center justify-between group hover:border-[#d4af37]/30 transition">
+                        <div class="flex items-center gap-6">
+                            <span class="text-2xl font-black text-gray-600 group-hover:text-[#d4af37] transition">${app.time}</span>
                             <div>
-                                <strong>${cita.cliente}</strong><br>
-                                <small style="color:#666">${cita.servicio}</small>
+                                <h4 class="font-bold text-lg">${app.name}</h4>
+                                <p class="text-xs text-gray-500 uppercase tracking-widest">${app.service}</p>
                             </div>
                         </div>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <select onchange="updateEstado(${cita.id}, this.value)" class="status-pill status-${cita.estado}">
-                                <option value="pendiente" ${cita.estado==='pendiente'?'selected':''}>Pendiente</option>
-                                <option value="confirmado" ${cita.estado==='confirmado'?'selected':''}>Confirmado</option>
-                                <option value="vino" ${cita.estado==='vino'?'selected':''}>Vino</option>
-                                <option value="cancelado" ${cita.estado==='cancelado'?'selected':''}>Cancelado</option>
-                            </select>
-                            <button class="btn btn-whatsapp" onclick="enviarWA('${cita.tel}', '${cita.cliente}', '${cita.hora}')">
-                                <i class="fab fa-whatsapp"></i>
+                        <div class="flex items-center gap-4">
+                            <span class="px-4 py-1 rounded-full text-[10px] font-bold ${statusColor}">${app.status.toUpperCase()}</span>
+                            <button onclick="sendWA('${app.phone}', '${app.name}', '${app.time}')" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-green-500/20 transition">
+                                <i class="fab fa-whatsapp text-green-500"></i>
                             </button>
                         </div>
                     </div>
@@ -169,44 +169,29 @@
             });
         }
 
-        // Actualizar estado dinámicamente
-        function updateEstado(id, nuevoEstado) {
-            const cita = citas.find(c => c.id === id);
-            cita.estado = nuevoEstado;
-            renderAgenda();
+        // Lógica WhatsApp
+        function sendWA(phone, name, time) {
+            const msg = encodeURIComponent(`Hola ${name}, te recordamos tu cita hoy a las ${time} en Luxe & Cut. ¡Confírmanos si asistes!`);
+            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
         }
 
-        // WhatsApp Funcional
-        function enviarWA(tel, nombre, hora) {
-            const texto = `Hola ${nombre}, te confirmamos tu cita hoy a las ${hora}. ¡Te esperamos en Hair & Style!`;
-            window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
-        }
-
-        // Añadir cita de prueba
-        function addMockAppointment() {
-            const nueva = { id: Date.now(), hora: '12:00', cliente: 'Cliente Nuevo', servicio: 'Corte', estado: 'pendiente', tel: '34600000000' };
-            citas.push(nueva);
-            renderAgenda();
-        }
-
-        // Chatbot Lógica
-        function toggleChat() {
-            const ui = document.getElementById('chatbot-ui');
-            ui.style.display = ui.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function askBot(tema) {
-            const content = document.getElementById('chat-content');
-            content.innerHTML += `<div class="msg msg-user">${tema}</div>`;
-            
+        // Chatbot simple
+        function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
+        function botResponse(type) {
+            const msgs = document.getElementById('chat-msgs');
+            const responses = {
+                precios: "Corte: 20€ | Barba: 12€ | Pack VIP: 30€.",
+                horarios: "Lunes a Sábado: 10:00 - 21:00."
+            };
+            msgs.innerHTML += `<div class="bg-[#d4af37]/20 p-3 rounded-2xl rounded-tr-none ml-auto text-xs w-fit">Ver ${type}</div>`;
             setTimeout(() => {
-                let respuesta = "";
-                if(tema === 'Horarios') respuesta = "Abrimos de L-S de 10:00 a 20:00.";
-                if(tema === 'Precios') respuesta = "Cortes desde 18€. Arreglo de barba 12€.";
-                content.innerHTML += `<div class="msg msg-bot">${respuesta}</div>`;
-                content.scrollTop = content.scrollHeight;
-            }, 500);
+                msgs.innerHTML += `<div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-auto w-fit">${responses[type]}</div>`;
+                msgs.scrollTop = msgs.scrollHeight;
+            }, 400);
         }
+
+        // Iniciar
+        renderAgenda();
     </script>
 </body>
 </html>
